@@ -1,0 +1,36 @@
+<!DOCTYPE ArticleSet PUBLIC "-//NLM//DTD PubMed 2.8//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/in/PubMed.dtd">
+<ArticleSet>
+<Article>
+<Journal>
+<PublisherName>Public Library of Science</PublisherName>
+<JournalTitle>PLoS One</JournalTitle>
+<Issn>1932-6203</Issn>
+<Volume>9</Volume>
+<Issue>10</Issue>
+<PubDate PubStatus="epublish">
+<Year>2014</Year>
+<Month>10</Month>
+<Day>23</Day>
+</PubDate>
+</Journal>
+<ArticleTitle>Correction: Statin Treatment in Hypercholesterolemic Men Does Not Attenuate Angiotensin II-Induced Venoconstriction</ArticleTitle>
+<FirstPage LZero="save">e112205</FirstPage>
+<AuthorList>
+<Author>
+<CollectiveName>The PLOS ONE Staff</CollectiveName>
+</Author>
+</AuthorList>
+<PublicationType>Published Erratum</PublicationType>
+<ArticleIdList>
+<ArticleId IdType="doi">10.1371/journal.pone.0112205</ArticleId>
+<ArticleId IdType="pii">PONE-D-14-46356</ArticleId>
+</ArticleIdList>
+<Abstract>This corrects the article DOI: 10.1371/journal.pone.0103909.</Abstract>
+<ObjectList>
+<Object Type="Erratum">
+<Param Name="type">pmid</Param>
+<Param Name="id">25264877</Param>
+</Object>
+</ObjectList>
+</Article>
+</ArticleSet>
