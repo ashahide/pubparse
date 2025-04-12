@@ -1,0 +1,3 @@
+package fileIO
+
+func TestLoadFilesInDir()
