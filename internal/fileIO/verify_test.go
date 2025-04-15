@@ -49,7 +49,7 @@ func TestVerifyPath(t *testing.T) {
 					t.Errorf("expected error, got nil")
 				}
 				if tt.errType != nil {
-					if _, ok := err.(error); !ok || err == nil {
+					if err == nil {
 						t.Errorf("expected error type %T, got %v", tt.errType, err)
 					}
 				}
