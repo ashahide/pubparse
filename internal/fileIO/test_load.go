@@ -1,3 +1,0 @@
-package fileIO
-
-func TestLoadFilesInDir()
