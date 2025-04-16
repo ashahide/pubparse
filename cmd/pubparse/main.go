@@ -5,8 +5,11 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/ashahide/pubparse/internal/fileIO"
+	"github.com/ashahide/pubparse/internal/jsonTools"
+	"github.com/ashahide/pubparse/internal/xmlTools"
 )
 
 func main() {
@@ -35,6 +38,24 @@ func run() error {
 	fmt.Println("Output Path:", args.OutputPath.Path)
 	for _, f := range args.OutputPath.Files {
 		fmt.Printf(" - %s (%d bytes)\n", f.Name(), f.Size())
+	}
+
+	for i := range args.InputPath.Files {
+		fin := args.InputPath.Files[i]
+		fout := args.OutputPath.Files[i]
+
+		fmt.Println("Processing file:", fin.Name())
+
+		result, err := xmlTools.ParsePubmedArticleSet(filepath.Join(args.InputPath.Path, fin.Name()))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		err = jsonTools.ConvertToJson(result, args.OutputPath.Path, fout)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 	}
 
 	return nil

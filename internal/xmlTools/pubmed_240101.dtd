@@ -470,8 +470,3 @@ Additions/Changes since pubmed_230101 DTD:
 <!ELEMENT	VolumeTitle (%text;)*>
 
 <!ELEMENT	Year (#PCDATA) >
-
-
-
-
-

@@ -1,0 +1,83 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "PubmedArticleSet",
+    "type": "object",
+    "properties": {
+      "PubmedArticles": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "MedlineCitation": {
+              "type": "object",
+              "properties": {
+                "PMID": {
+                  "type": "string"
+                },
+                "Article": {
+                  "type": "object"
+                },
+                "DateCompleted": {
+                  "type": "object"
+                },
+                "DateRevised": {
+                  "type": "object"
+                },
+                "MeshHeadingList": {
+                  "type": "object"
+                },
+                "KeywordList": {
+                  "type": "array"
+                },
+                "OtherID": {
+                  "type": "string"
+                },
+                "CoiStatement": {
+                  "type": "string"
+                },
+                "InvestigatorList": {
+                  "type": "string"
+                },
+                "Owner": {
+                  "type": "string"
+                },
+                "Status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "PMID",
+                "Article"
+              ]
+            },
+            "PubmedData": {
+              "type": "object",
+              "properties": {
+                "History": {
+                  "type": "array"
+                },
+                "PublicationStatus": {
+                  "type": "string"
+                },
+                "ArticleIdList": {
+                  "type": "object"
+                },
+                "ReferenceList": {
+                  "type": "array"
+                }
+              },
+              "required": [
+                "PublicationStatus"
+              ]
+            }
+          },
+          "required": [
+            "MedlineCitation"
+          ]
+        }
+      }
+    },
+    "required": [
+      "PubmedArticles"
+    ]
+  }
