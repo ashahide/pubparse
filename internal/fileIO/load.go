@@ -7,10 +7,9 @@ import (
 	"path/filepath"
 
 	"github.com/ashahide/pubparse/internal/customErrors"
-	"github.com/ashahide/pubparse/internal/data"
 )
 
-func LoadFilesInDir(dirInfo data.PathInfo, desiredTypeExt string) (data.PathInfo, error) {
+func LoadFilesInDir(dirInfo PathInfo, desiredTypeExt string) (PathInfo, error) {
 	if !dirInfo.Info.IsDir() {
 		// Treat single file as the only entry
 		entry, err := os.Stat(dirInfo.Path)
