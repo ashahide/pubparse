@@ -28,5 +28,7 @@ go.work.sum
 
 .vscode
 
-test/test_xmls/*.json
-test/test_xmls/*.xml
+test/test_pubmed/*.json
+test/test_pubmed/*.xml
+
+/bin
