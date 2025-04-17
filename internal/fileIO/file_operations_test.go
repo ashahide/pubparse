@@ -8,21 +8,26 @@ import (
 	"github.com/ashahide/pubparse/internal/fileIO"
 )
 
-// TestMakeFile validates that MakeFile correctly creates or recreates files.
+//
+// ------------------------ Test: MakeFile ------------------------
+//
+
+// TestMakeFile verifies that MakeFile correctly creates new files,
+// and also replaces existing files without raising errors.
 func TestMakeFile(t *testing.T) {
-	// Create a temporary directory for safe, isolated test files
+	// Create a temporary directory for isolated test artifacts
 	tmpDir := t.TempDir()
 
 	t.Run("create new file", func(t *testing.T) {
 		path := filepath.Join(tmpDir, "newfile.txt")
 
-		// Call the function
+		// Attempt to create the new file
 		err := fileIO.MakeFile(path)
 		if err != nil {
-			t.Fatalf("unexpected error: %v", err)
+			t.Fatalf("unexpected error while creating file: %v", err)
 		}
 
-		// Check if the file now exists
+		// Verify the file now exists
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			t.Errorf("file was not created at: %s", path)
 		}
@@ -31,50 +36,70 @@ func TestMakeFile(t *testing.T) {
 	t.Run("recreate existing file", func(t *testing.T) {
 		path := filepath.Join(tmpDir, "existing.txt")
 
-		// Create file manually
-		err := os.WriteFile(path, []byte("original"), 0644)
+		// Manually create the file
+		err := os.WriteFile(path, []byte("original content"), 0644)
 		if err != nil {
-			t.Fatalf("setup failed: %v", err)
+			t.Fatalf("setup failed: could not create initial file: %v", err)
 		}
 
-		// Re-create it via MakeFile
+		// Call MakeFile to overwrite it
 		err = fileIO.MakeFile(path)
 		if err != nil {
-			t.Fatalf("unexpected error: %v", err)
+			t.Fatalf("unexpected error while recreating file: %v", err)
 		}
 
-		// Confirm the file exists
-		_, err = os.Stat(path)
-		if err != nil {
-			t.Errorf("file disappeared: %v", err)
+		// Confirm the file still exists (recreated)
+		if _, err := os.Stat(path); err != nil {
+			t.Errorf("file was unexpectedly missing: %v", err)
 		}
 	})
 }
 
-// TestChangeExtension validates the ChangeExtension function,
-// which replaces or adds a file extension to a given path.
+//
+// ------------------------ Test: ChangeExtension ------------------------
+//
+
+// TestChangeExtension ensures that ChangeExtension correctly changes or adds
+// file extensions to input paths.
+//
+// It handles paths with existing extensions, no extensions, or missing dots in new extensions.
 func TestChangeExtension(t *testing.T) {
-	// Define a set of test cases using table-driven style.
+	// Table of test cases
 	tests := []struct {
-		name     string // Name of the test case for readability in test output
-		path     string // Original file path
+		name     string // Descriptive name for subtest
+		path     string // Input file path
 		newExt   string // New extension to apply
-		expected string // Expected result after extension change
+		expected string // Expected result
 	}{
-		{"xml to json", "test.xml", ".json", "test.json"},         // Typical extension replacement
-		{"xml to json - no dot", "test.xml", "json", "test.json"}, // Handles missing dot in extension
-		{"empty path", "", ".json", ".json"},                      // Edge case: empty input path
+		{
+			name:     "xml to json",
+			path:     "test.xml",
+			newExt:   ".json",
+			expected: "test.json",
+		},
+		{
+			name:     "xml to json - no dot",
+			path:     "test.xml",
+			newExt:   "json",
+			expected: "test.json",
+		},
+		{
+			name:     "empty path",
+			path:     "",
+			newExt:   ".json",
+			expected: ".json",
+		},
 	}
 
-	// Loop through each test case
+	// Run each test case in isolation
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			// Call the function under test
+			// Execute the function under test
 			result := fileIO.ChangeExtension(test.path, test.newExt)
 
-			// Compare the actual result with the expected result
+			// Validate the result
 			if result != test.expected {
-				t.Errorf("expected %s, got %s", test.expected, result)
+				t.Errorf("expected %q, got %q", test.expected, result)
 			}
 		})
 	}
