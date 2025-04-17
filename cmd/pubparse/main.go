@@ -19,12 +19,38 @@ func main() {
 }
 
 func run() error {
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: pubparse [pubmed|pmc] -i input_path -o output_path")
+		os.Exit(1)
+	}
+
+	mode := os.Args[1]
 	var args fileIO.Arguments
 
-	flag.StringVar(&args.InputPath.Path, "i", "", "Path to the input file or directory of files")
-	flag.Parse()
+	switch mode {
+	case "pubmed":
+		cmd := flag.NewFlagSet(mode, flag.ExitOnError)
+		cmd.StringVar(&args.InputPath.Path, "i", "", "Path to the input file or directory")
+		cmd.StringVar(&args.OutputPath.Path, "o", "", "Path to the output file or directory")
+		if err := cmd.Parse(os.Args[2:]); err != nil {
+			return err
+		}
 
-	// Handle inputs and outputs
+	case "pmc":
+		cmd := flag.NewFlagSet(mode, flag.ExitOnError)
+		cmd.StringVar(&args.InputPath.Path, "i", "", "Path to the input file or directory")
+		cmd.StringVar(&args.OutputPath.Path, "o", "", "Path to the output file or directory")
+		if err := cmd.Parse(os.Args[2:]); err != nil {
+			return err
+		}
+
+		return fmt.Errorf("PMC mode is not yet implemented")
+
+	default:
+		return fmt.Errorf("unknown subcommand: %s\nUsage: pubparse [pubmed|pmc] -i input -o output", mode)
+	}
+
+	// Validate and gather input/output files
 	if err := fileIO.HandleInputs(&args); err != nil {
 		return fmt.Errorf("input handling failed: %w", err)
 	}
@@ -32,21 +58,22 @@ func run() error {
 		return fmt.Errorf("output handling failed: %w", err)
 	}
 
-	// Display file mappings
+	// Show file mappings
 	fmt.Println("\nInput Path:", args.InputPath.Path)
 	for _, f := range args.InputPath.Files {
-		fmt.Printf("\n- %s", f)
+		fmt.Printf("- %s\n", f)
 	}
 	fmt.Println("\nOutput Path:", args.OutputPath.Path)
 	for _, f := range args.OutputPath.Files {
-		fmt.Printf("\n- %s", f)
+		fmt.Printf("- %s\n", f)
 	}
 
-	// Check file count consistency
+	// Check 1-to-1 mapping
 	if len(args.InputPath.Files) != len(args.OutputPath.Files) {
 		return fmt.Errorf("input/output file count mismatch")
 	}
 
+	// Process each file
 	for i := range args.InputPath.Files {
 		fin := args.InputPath.Files[i]
 		fout := args.OutputPath.Files[i]
@@ -57,9 +84,15 @@ func run() error {
 
 		fmt.Println("\nProcessing file:", fin)
 
-		data, err := xmlTools.ParsePubmedXML(fin)
-		if err != nil {
-			return fmt.Errorf("failed to parse XML %q: %w", fin, err)
+		var data interface{}
+		var xml_parse_err error
+		switch mode {
+		case "pubmed":
+			data, xml_parse_err = xmlTools.ParsePubmedXML(fin)
+		}
+
+		if xml_parse_err != nil {
+			return fmt.Errorf("failed to parse XML %q: %w", fin, xml_parse_err)
 		}
 
 		switch v := data.(type) {

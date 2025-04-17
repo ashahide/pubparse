@@ -4,32 +4,42 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // HandleOutputs prepares the output directory and file paths for writing JSON files.
 //
 // It performs the following steps:
-//  1. Determines the appropriate "process" output directory.
+//  1. Determines the appropriate output directory (user-defined or auto-generated).
 //  2. Ensures the output directory exists (or creates it).
 //  3. Generates one-to-one output .json file paths corresponding to the input files.
 //  4. Verifies write access by attempting to create each file.
-//  5. Verifies that the output directory exists and is accessible.
+//  5. Captures metadata about the output directory.
 //
 // The resulting output paths are stored in args.OutputPath.
 func HandleOutputs(args *Arguments) error {
-	// Step 1: Get the output directory (sibling "process" directory to input)
-	processDir, err := GetProcessDir(args.InputPath.Path, args.InputPath.Info)
-	if err != nil {
-		return err
+	var err error
+
+	// Step 1: Generate output path if not provided
+	if args.OutputPath.Path == "" {
+		args.OutputPath.Path, err = GetOutputDir(
+			args.InputPath.Path,
+			args.InputPath.Info,
+			"", // No output path provided
+			nil,
+		)
+		if err != nil {
+			return err
+		}
 	}
 
 	// Step 2: Ensure that the output directory exists
-	if err := EnsureDir(processDir); err != nil {
+	if err := EnsureDir(args.OutputPath.Path); err != nil {
 		return err
 	}
 
 	// Step 3: Create full paths for each output .json file
-	outputFiles, err := GenerateJSONFilePaths(args.InputPath.Files, processDir)
+	outputFiles, err := GenerateJSONFilePaths(args.InputPath.Files, args.OutputPath.Path)
 	if err != nil {
 		return err
 	}
@@ -40,40 +50,39 @@ func HandleOutputs(args *Arguments) error {
 	}
 
 	// Step 5: Get info about the output directory itself
-	info, err := VerifyPath(processDir, "")
+	info, err := VerifyPath(args.OutputPath.Path, "")
 	if err != nil {
-		return fmt.Errorf("failed to verify output path %q: %w", processDir, err)
+		return fmt.Errorf("failed to verify output path %q: %w", args.OutputPath.Path, err)
 	}
 
 	// Store output path info in args
-	args.OutputPath = PathInfo{
-		Path:  processDir,
-		Files: outputFiles,
-		Info:  info,
-	}
+	args.OutputPath.Info = info
+	args.OutputPath.Files = outputFiles
 
 	return nil
 }
 
-// GetProcessDir determines the parallel "process" output directory for a given input path.
+// GetOutputDir generates a default descriptive output directory path.
 //
-// If the input is a directory, it returns a sibling "process" directory.
-// If the input is a file, it returns a "process" directory that is a sibling of the file’s parent.
-//
-// Example:
-//
-//	Input: /data/input/article.xml
-//	Output: /data/process
-func GetProcessDir(inputPath string, inputInfo os.FileInfo) (string, error) {
+// If input is a directory: <input_parent>/processed_<input_dirname>
+// If input is a file: <grandparent>/processed_<parent_dirname>
+func GetOutputDir(inputPath string, inputInfo os.FileInfo, outputPath string, outputInfo os.FileInfo) (string, error) {
+	var baseName string
+
 	if inputInfo.IsDir() {
-		// For input directory, create sibling 'process' directory
-		return filepath.Join(filepath.Dir(inputPath), "process"), nil
+		baseName = filepath.Base(inputPath)
+		return filepath.Join(filepath.Dir(inputPath), "processed_"+sanitizeName(baseName)), nil
 	}
 
-	// For input file, create sibling to the parent of the file
 	parentDir := filepath.Dir(inputPath)
+	baseName = filepath.Base(parentDir)
 	grandParent := filepath.Dir(parentDir)
-	return filepath.Join(grandParent, "process"), nil
+	return filepath.Join(grandParent, "processed_"+sanitizeName(baseName)), nil
+}
+
+// sanitizeName replaces spaces or separators with underscores to ensure safe directory names.
+func sanitizeName(name string) string {
+	return strings.ReplaceAll(name, " ", "_")
 }
 
 // EnsureDir ensures that a directory exists, creating it and all parent directories if necessary.

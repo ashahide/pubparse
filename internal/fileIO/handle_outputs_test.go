@@ -3,18 +3,20 @@ package fileIO_test
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/ashahide/pubparse/internal/fileIO"
 )
 
 //
-// ---------------------- getProcessDir ----------------------
+// ---------------------- GetOutputDir ----------------------
 //
 
-// TestGetProcessDir_Directory verifies that getProcessDir correctly identifies
-// the parent of a directory and returns a sibling "process" directory.
-func TestGetProcessDir_Directory(t *testing.T) {
+// TestGetOutputDir_Directory verifies that GetOutputDir returns the correct
+// auto-generated output directory when the input path is a directory.
+// The expected format is: <input_parent>/processed_<dirname>
+func TestGetOutputDir_Directory(t *testing.T) {
 	tmp := t.TempDir()
 
 	info, err := os.Stat(tmp)
@@ -22,24 +24,25 @@ func TestGetProcessDir_Directory(t *testing.T) {
 		t.Fatalf("failed to stat temp dir: %v", err)
 	}
 
-	result, err := fileIO.GetProcessDir(tmp, info)
+	result, err := fileIO.GetOutputDir(tmp, info, "", nil)
 	if err != nil {
-		t.Errorf("getProcessDir returned error: %v", err)
+		t.Errorf("GetOutputDir returned error: %v", err)
 	}
 
-	expected := filepath.Join(filepath.Dir(tmp), "process")
+	expected := filepath.Join(filepath.Dir(tmp), "processed_"+filepath.Base(tmp))
 	if result != expected {
 		t.Errorf("expected %q, got %q", expected, result)
 	}
 }
 
-// TestGetProcessDir_File checks that getProcessDir returns the correct sibling
-// "process" directory when given a file path as input.
-func TestGetProcessDir_File(t *testing.T) {
+// TestGetOutputDir_File verifies that GetOutputDir returns the correct
+// auto-generated output directory when the input path is a file.
+// The expected format is: <file_grandparent>/processed_<parent_dir>
+func TestGetOutputDir_File(t *testing.T) {
 	tmpDir := t.TempDir()
 	tmpFile := filepath.Join(tmpDir, "file.xml")
 
-	// Create a dummy XML file
+	// Create a dummy file to test against
 	if err := os.WriteFile(tmpFile, []byte("hi"), 0644); err != nil {
 		t.Fatalf("failed to create file: %v", err)
 	}
@@ -49,29 +52,32 @@ func TestGetProcessDir_File(t *testing.T) {
 		t.Fatalf("stat file failed: %v", err)
 	}
 
-	result, err := fileIO.GetProcessDir(tmpFile, info)
+	parentDir := filepath.Base(filepath.Dir(tmpFile))
+	expected := filepath.Join(filepath.Dir(filepath.Dir(tmpFile)), "processed_"+parentDir)
+
+	result, err := fileIO.GetOutputDir(tmpFile, info, "", nil)
 	if err != nil {
-		t.Errorf("getProcessDir returned error: %v", err)
+		t.Errorf("GetOutputDir returned error: %v", err)
 	}
 
-	expected := filepath.Join(filepath.Dir(filepath.Dir(tmpFile)), "process")
 	if result != expected {
 		t.Errorf("expected %q, got %q", expected, result)
 	}
 }
 
 //
-// ---------------------- ensureDir ----------------------
+// ---------------------- EnsureDir ----------------------
 //
 
-// TestEnsureDir_CreatesDirectory ensures that EnsureDir creates nested directories as expected.
+// TestEnsureDir_CreatesDirectory ensures that EnsureDir creates
+// nested directory structures successfully.
 func TestEnsureDir_CreatesDirectory(t *testing.T) {
 	tmp := t.TempDir()
 	newPath := filepath.Join(tmp, "subdir", "more")
 
 	err := fileIO.EnsureDir(newPath)
 	if err != nil {
-		t.Errorf("ensureDir failed: %v", err)
+		t.Errorf("EnsureDir failed: %v", err)
 	}
 
 	if _, err := os.Stat(newPath); os.IsNotExist(err) {
@@ -80,10 +86,11 @@ func TestEnsureDir_CreatesDirectory(t *testing.T) {
 }
 
 //
-// ---------------------- verifyWriteAccess ----------------------
+// ---------------------- VerifyWriteAccess ----------------------
 //
 
-// TestVerifyWriteAccess_CreatesFiles checks that verifyWriteAccess can write to all given paths.
+// TestVerifyWriteAccess_CreatesFiles verifies that VerifyWriteAccess
+// creates each file successfully and ensures write permissions.
 func TestVerifyWriteAccess_CreatesFiles(t *testing.T) {
 	tmp := t.TempDir()
 	files := []string{
@@ -93,7 +100,7 @@ func TestVerifyWriteAccess_CreatesFiles(t *testing.T) {
 
 	err := fileIO.VerifyWriteAccess(files)
 	if err != nil {
-		t.Errorf("verifyWriteAccess failed: %v", err)
+		t.Errorf("VerifyWriteAccess failed: %v", err)
 	}
 
 	for _, f := range files {
@@ -107,8 +114,12 @@ func TestVerifyWriteAccess_CreatesFiles(t *testing.T) {
 // ---------------------- HandleOutputs ----------------------
 //
 
-// TestHandleOutputs_Success verifies the full HandleOutputs pipeline for valid input,
-// ensuring that process directory is created and JSON file paths are assigned.
+// TestHandleOutputs_Success ensures the full HandleOutputs pipeline works as expected.
+// It should:
+// - Auto-generate an output directory
+// - Create one .json file path per input
+// - Validate output path naming convention
+// - Actually create the output files
 func TestHandleOutputs_Success(t *testing.T) {
 	tmpDir := t.TempDir()
 	xmlFile := filepath.Join(tmpDir, "article.xml")
@@ -124,27 +135,33 @@ func TestHandleOutputs_Success(t *testing.T) {
 			Info:  info,
 			Files: []string{xmlFile},
 		},
+		// Leave OutputPath.Path blank to trigger auto-generation
 	}
 
 	if err := fileIO.HandleOutputs(args); err != nil {
 		t.Errorf("HandleOutputs failed: %v", err)
 	}
 
-	// Expect exactly one .json file output
+	// Expect one .json file
 	if len(args.OutputPath.Files) != 1 {
 		t.Errorf("expected 1 output file, got %d", len(args.OutputPath.Files))
 	}
 
-	// Validate that the output file was created
+	// Confirm auto-naming follows processed_ pattern
+	if !strings.HasPrefix(filepath.Base(args.OutputPath.Path), "processed_") {
+		t.Errorf("expected output path to start with 'processed_', got %q", args.OutputPath.Path)
+	}
+
+	// Check that file was created
 	if _, err := os.Stat(args.OutputPath.Files[0]); err != nil {
 		t.Errorf("output file not created: %v", err)
 	}
 }
 
-// TestHandleOutputs_InvalidOutputPath simulates a failure when trying to write
-// to an invalid path. It expects HandleOutputs to return an error.
+// TestHandleOutputs_InvalidOutputPath simulates a failure scenario where the
+// input path is invalid or inaccessible. It should return an error.
 func TestHandleOutputs_InvalidOutputPath(t *testing.T) {
-	// Use a path that is extremely unlikely to exist
+	// Simulated invalid path
 	badPath := "/this/should/not/exist/ever/file.xml"
 
 	args := &fileIO.Arguments{
