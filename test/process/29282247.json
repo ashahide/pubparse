@@ -1,0 +1,1101 @@
+{
+  "PubmedArticles": [
+    {
+      "MedlineCitation": {
+        "PMID": "29282247",
+        "DateCompleted": {
+          "Year": "2019",
+          "Month": "01",
+          "Day": "29",
+          "Hour": "",
+          "Minute": "",
+          "PubStatus": ""
+        },
+        "DateRevised": {
+          "Year": "2019",
+          "Month": "01",
+          "Day": "29",
+          "Hour": "",
+          "Minute": "",
+          "PubStatus": ""
+        },
+        "Article": {
+          "Journal": {
+            "ISSN": "1524-4636",
+            "JournalIssue": "",
+            "Title": "Arteriosclerosis, thrombosis, and vascular biology",
+            "ISOAbbreviation": "Arterioscler Thromb Vasc Biol"
+          },
+          "ArticleTitle": "Highlighting Diabetes Mellitus: The Epidemic Continues.",
+          "Abstract": {
+            "AbstractText": "",
+            "CopyrightInformation": ""
+          },
+          "AuthorList": [
+            {
+              "LastName": "Schmidt",
+              "ForeName": "Ann Marie",
+              "Initials": "AM",
+              "Suffix": "",
+              "CollectiveName": "",
+              "AffiliationInfo": [
+                {
+                  "Affiliation": "From the Diabetes Research Program, Division of Endocrinology, Diabetes and Metabolism, Department of Medicine, New York University School of Medicine. annmarie.schmidt@nyumc.org.",
+                  "Identifier": ""
+                }
+              ],
+              "ValidYN": "Y"
+            }
+          ],
+          "Language": [
+            "eng"
+          ],
+          "PublicationTypeList": [
+            {
+              "Text": "Journal Article",
+              "UI": "D016428"
+            },
+            {
+              "Text": "Review",
+              "UI": "D016454"
+            }
+          ],
+          "ArticleDate": ""
+        },
+        "MedlineJournalInfo": {
+          "ISSN": "",
+          "JournalIssue": "",
+          "Title": "",
+          "ISOAbbreviation": ""
+        },
+        "ChemicalList": null,
+        "SupplMeshList": {
+          "SupplMeshNames": null
+        },
+        "CitationSubset": "IM",
+        "CommentsCorrectionsList": null,
+        "GeneSymbolList": {
+          "GeneSymbols": null
+        },
+        "MeshHeadingList": {
+          "MeshHeadings": [
+            {
+              "DescriptorName": "Animals",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Diabetes Complications",
+              "Qualifiers": [
+                {
+                  "Text": "blood",
+                  "UI": "Q000097",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "epidemiology",
+                  "UI": "Q000453",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "therapy",
+                  "UI": "Q000628",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Experimental",
+              "Qualifiers": [
+                {
+                  "Text": "blood",
+                  "UI": "Q000097",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "therapy",
+                  "UI": "Q000628",
+                  "MajorTopicYN": "N"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Type 1",
+              "Qualifiers": [
+                {
+                  "Text": "blood",
+                  "UI": "Q000097",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "epidemiology",
+                  "UI": "Q000453",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "therapy",
+                  "UI": "Q000628",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Type 2",
+              "Qualifiers": [
+                {
+                  "Text": "blood",
+                  "UI": "Q000097",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "epidemiology",
+                  "UI": "Q000453",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "therapy",
+                  "UI": "Q000628",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Epidemics",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Humans",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Prognosis",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Risk Factors",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "United States",
+              "Qualifiers": [
+                {
+                  "Text": "epidemiology",
+                  "UI": "Q000453",
+                  "MajorTopicYN": "N"
+                }
+              ]
+            }
+          ]
+        },
+        "NumberOfReferences": "",
+        "PersonalNameSubjectList": "",
+        "OtherID": "",
+        "OtherAbstract": {
+          "AbstractText": "",
+          "CopyrightInformation": ""
+        },
+        "KeywordList": [
+          "diabetes mellitus",
+          "glucose",
+          "human",
+          "hyperglycemia",
+          "models, animal"
+        ],
+        "CoiStatement": "",
+        "SpaceFlightMission": "",
+        "InvestigatorList": "",
+        "GeneralNote": "",
+        "Owner": "NLM",
+        "Status": "MEDLINE",
+        "Medline": "",
+        "VersionID": "",
+        "VersionDate": "",
+        "IndexingMethod": "Manual"
+      },
+      "PubmedData": {
+        "History": [
+          {
+            "PubStatus": "entrez",
+            "Year": "2017",
+            "Month": "12",
+            "Day": "29"
+          },
+          {
+            "PubStatus": "pubmed",
+            "Year": "2017",
+            "Month": "12",
+            "Day": "29"
+          },
+          {
+            "PubStatus": "medline",
+            "Year": "2019",
+            "Month": "1",
+            "Day": "30"
+          },
+          {
+            "PubStatus": "pmc-release",
+            "Year": "2019",
+            "Month": "1",
+            "Day": "1"
+          }
+        ],
+        "PublicationStatus": "ppublish",
+        "ArticleIdList": {
+          "ArticleIds": [
+            {
+              "ID": "29282247",
+              "IdType": "pubmed"
+            },
+            {
+              "ID": "NIHMS922546",
+              "IdType": "mid"
+            },
+            {
+              "ID": "PMC5776687",
+              "IdType": "pmc"
+            },
+            {
+              "ID": "10.1161/ATVBAHA.117.310221",
+              "IdType": "doi"
+            },
+            {
+              "ID": "ATVBAHA.117.310221",
+              "IdType": "pii"
+            }
+          ]
+        },
+        "ObjectList": null,
+        "ReferenceList": [
+          {
+            "Citation": "Classification and Diagnosis of Diabetes. American Diabetes Association. Diabetes Care. 2015;38:S8–S16.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25537714",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "George AM, Jacob AG, Fogelfeld L. Lean diabetes mellitus: An emerging entity in the era of obesity. World J Diabetes. 2015;6:613–20.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4434081",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "25987958",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Lascar N, Brown J, Pattison H, Barnett AH, Bailey CJ, Bellary S. Type 2 diabetes in adolescents and young adults. Lancet Diabetes Endocrinol. 2017",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28847479",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Lorenzi M, Cagliero E. Pathobiology of endothelial and other vascular cells in diabetes mellitus. Call for data. Diabetes. 1991;40:653–9.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "2040380",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Domingueti CP, Dusse LM, Carvalho M, de Sousa LP, Gomes KB, Fernandes AP. Diabetes mellitus: The linkage between oxidative stress, inflammation, hypercoagulability and vascular complications. J Diabetes Complications. 2016;30:738–45.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26781070",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Chao CL, Chuang CP, Cheng YF, Lee KR, Chang Y, Cheng SP, Chan WK, Ho FM. The Protective Role of Autophagy in Matrix Metalloproteinase-Mediated Cell Transmigration and Cell Death in High-Glucose-Treated Endothelial Cells. Inflammation. 2016;39:830–8.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26846884",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Lenoir O, Jasiek M, Henique C, Guyonnet L, Hartleben B, Bork T, Chipont A, Flosseau K, Bensaada I, Schmitt A, Masse JM, Souyri M, Huber TB, Tharaux PL. Endothelial cell and podocyte autophagy synergistically protect from diabetes-induced glomerulosclerosis. Autophagy. 2015;11:1130–45.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4590611",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26039325",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Bharath LP, Cho JM, Park SK, et al. Endothelial Cell Autophagy Maintains Shear Stress-Induced Nitric Oxide Generation via Glycolysis-Dependent Purinergic Signaling to Endothelial Nitric Oxide Synthase. Arterioscler Thromb Vasc Biol. 2017;37:1646–56.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5693355",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28684613",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Miriyala S, Gongora Nieto MC, Mingone C, Smith D, Dikalov S, Harrison DG, Jo H. Bone morphogenic protein-4 induces hypertension in mice: role of noggin, vascular NADPH oxidases, and impaired vasorelaxation. Circulation. 2006;113:2818–25.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "16769910",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Hu W, Zhang Y, Wang L, Lau CW, Xu J, Luo JY, Gou L, Yao X, Chen ZY, Ma RC, Tian XY, Huang Y. Bone Morphogenic Protein 4-Smad-Induced Upregulation of Platelet-Derived Growth Factor AA Impairs Endothelial Function. Arterioscler Thromb Vasc Biol. 2016;36:553–60.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26769046",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Chiu AP, Wan A, Lal N, Zhang D, Wang F, Vlodavsky I, Hussein B, Rodrigues B. Cardiomyocyte VEGF Regulates Endothelial Cell GPIHBP1 to Relocate Lipoprotein Lipase to the Coronary Lumen During Diabetes Mellitus. Arterioscler Thromb Vasc Biol. 2016;36:145–55.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26586663",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Gray SP, Di Marco E, Kennedy K, Chew P, Okabe J, El-Osta A, Calkin AC, Biessen EA, Touyz RM, Cooper ME, Schmidt HH, Jandeleit-Dahm KA. Reactive Oxygen Species Can Provide Atheroprotection via NOX4-Dependent Inhibition of Inflammation and Vascular Remodeling. Arterioscler Thromb Vasc Biol. 2016;36:295–307.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26715682",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Miao J, Manthena PV, Haas ME, Ling AV, Shin DJ, Graham MJ, Crooke RM, Liu J, Biddinger SB. Role of Insulin in the Regulation of Proprotein Convertase Subtilisin/Kexin Type 9. Arterioscler Thromb Vasc Biol. 2015;35:1589–96.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4484737",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26023080",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nenna A, Nappi F, Avtaar Singh SS, Sutherland FW, Di Domenico F, Chello M, Spadaccio C. Pharmacologic Approaches Against Advanced Glycation End Products (AGEs) in Diabetic Cardiovascular Disease. Res Cardiovasc Med. 2015;4:e26949.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4571620",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26393232",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Brinck JW, Thomas A, Lauer E, et al. Diabetes Mellitus Is Associated With Reduced High-Density Lipoprotein Sphingosine-1-Phosphate Content and Impaired High-Density Lipoprotein Cardiac Cell Protection. Arterioscler Thromb Vasc Biol. 2016;36:817–24.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26966278",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Willecke F, Scerbo D, Nagareddy P, Obunike JC, Barrett TJ, Abdillahi ML, Trent CM, Huggins LA, Fisher EA, Drosatos K, Goldberg IJ. Lipolysis, and not hepatic lipogenesis, is the primary modulator of triglyceride levels in streptozotocin-induced diabetic mice. Arterioscler Thromb Vasc Biol. 2015;35:102–10.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4270817",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "25395613",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Gaiz A, Mosawy S, Colson N, Singh I. Thrombotic and cardiovascular risks in type two diabetes; Role of platelet hyperactivity. Biomed Pharmacother. 2017;94:679–86.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28787703",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Stitham J, Hwa J. Prostacyclin, Atherothrombosis and Diabetes Mellitus: Physiologic and Clinical Considerations. Curr Mol Med. 2016;16:328–42.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26980701",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Fidler TP, Middleton EA, Rowley JW, Boudreau LH, Campbell RA, Souvenir R, Funari T, Tessandier N, Boilard E, Weyrich AS, Abel ED. Glucose Transporter 3 Potentiates Degranulation and Is Required for Platelet Activation. Arterioscler Thromb Vasc Biol. 2017;37:1628–39.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5570649",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28663252",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Dhanesha N, Doddapattar P, Chorawala MR, Nayak MK, Kokame K, Staber JM, Lentz SR, Chauhan AK. ADAMTS13 Retards Progression of Diabetic Nephropathy by Inhibiting Intrarenal Thrombosis in Mice. Arterioscler Thromb Vasc Biol. 2017;37:1332–8.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5501287",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28495930",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Oe Y, Hayashi S, Fushima T, Sato E, Kisu K, Sato H, Ito S, Takahashi N. Coagulation Factor Xa and Protease-Activated Receptor 2 as Novel Therapeutic Targets for Diabetic Nephropathy. Arterioscler Thromb Vasc Biol. 2016;36:1525–33.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27283743",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Ashoori MR, Rahmati-Yamchi M, Ostadrahimi A, Fekri Aval S, Zarghami N. MicroRNAs and adipocytokines: Promising biomarkers for pharmacological targets in diabetes mellitus and its complications. Biomed Pharmacother. 2017;93:1326–36.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28747014",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Floris I, Descamps B, Vardeu A, Mitic T, Posadino AM, Shantikumar S, Sala-Newby G, Capobianco G, Mangialardi G, Howard L, Dessole S, Urrutia R, Pintus G, Emanueli C. Gestational diabetes mellitus impairs fetal endothelial cell functions through a mechanism involving microRNA-101 and histone methyltransferase enhancer of zester homolog-2. Arterioscler Thromb Vasc Biol. 2015;35:664–74.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25614281",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Li Q, Kim YR, Vikram A, Kumar S, Kassan M, Gabani M, Lee SK, Jacobs JS, Irani K. P66Shc-Induced MicroRNA-34a Causes Diabetic Endothelial Dysfunction by Downregulating Sirtuin1. Arterioscler Thromb Vasc Biol. 2016;36:2394–403.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5293179",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "27789474",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Reddy MA, Das S, Zhuo C, Jin W, Wang M, Lanting L, Natarajan R. Regulation of Vascular Smooth Muscle Cell Dysfunction Under Diabetic Conditions by miR-504. Arterioscler Thromb Vasc Biol. 2016;36:864–73.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4850084",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26941017",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Schones DE, Leung A, Natarajan R. Chromatin Modifications Associated With Diabetes and Obesity. Arterioscler Thromb Vasc Biol. 2015;35:1557–61.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4482788",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26044585",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Qing C. The molecular biology in wound healing \u0026 non-healing wound. Chin J Traumatol. 2017;20:189–93.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5555286",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28712679",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Stejskalova A, Almquist BD. Using biomaterials to rewire the process of wound repair. Biomater Sci. 2017;5:1421–34.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5576529",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28692083",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Zhang J, Li L, Li J, Liu Y, Zhang CY, Zhang Y, Zen K. Protein tyrosine phosphatase 1B impairs diabetic wound healing through vascular endothelial growth factor receptor 2 dephosphorylation. Arterioscler Thromb Vasc Biol. 2015;35:163–74.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5873604",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "25395617",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Lopez-Diez R, Shen X, Daffu G, Khursheed M, Hu J, Song F, Rosario R, Xu Y, Li Q, Xi X, Zou YS, Li H, Schmidt AM, Yan SF. Ager Deletion Enhances Ischemic Muscle Inflammation, Angiogenesis, and Blood Flow Recovery in Diabetic Mice. Arterioscler Thromb Vasc Biol. 2017;37:1536–47.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5559084",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28642238",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Chan XY, Black R, Dickerman K, Federico J, Levesque M, Mumm J, Gerecht S. Three-Dimensional Vascular Network Assembly From Diabetic Patient-Derived Induced Pluripotent Stem Cells. Arterioscler Thromb Vasc Biol. 2015;35:2677–85.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4603427",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26449749",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Yahagi K, Kolodgie FD, Lutter C, Mori H, Romero ME, Finn AV, Virmani R. Pathology of Human Coronary and Carotid Artery Atherosclerosis and Vascular Calcification in Diabetes Mellitus. Arterioscler Thromb Vasc Biol. 2017;37:191–204.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5269516",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "27908890",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Perez de Isla L, Alonso R, Mata N, et al. Coronary Heart Disease, Peripheral Arterial Disease, and Stroke in Familial Hypercholesterolaemia: Insights From the SAFEHEART Registry (Spanish Familial Hypercholesterolaemia Cohort Study) Arterioscler Thromb Vasc Biol. 2016;36:2004–10.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27444203",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Yamazoe M, Hisamatsu T, Miura K, Kadowaki S, Zaid M, Kadota A, Torii S, Miyazawa I, Fujiyoshi A, Arima H, Sekikawa A, Maegawa H, Horie M, Ueshima H. Relationship of Insulin Resistance to Prevalence and Progression of Coronary Artery Calcification Beyond Metabolic Syndrome Components: Shiga Epidemiological Study of Subclinical Atherosclerosis. Arterioscler Thromb Vasc Biol. 2016;36:1703–8.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27283744",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Le MT, Jamrozik K, Davis TM, Norman PE. Negative association between infra-renal aortic diameter and glycaemia: the Health in Men Study. Eur J Vasc Endovasc Surg. 2007;33:599–604.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "17307366",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Norman PE, Davis WA, Coughlan MT, Forbes JM, Golledge J, Davis TM. Serum carboxymethyllysine concentrations are reduced in diabetic men with abdominal aortic aneurysms: Health In Men Study. J Vasc Surg. 2009;50:626–31.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "19628355",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Kristensen KL, Dahl M, Rasmussen LM, Lindholt JS. Glycated Hemoglobin Is Associated With the Growth Rate of Abdominal Aortic Aneurysms: A Substudy From the VIVA (Viborg Vascular) Randomized Screening Trial. Arterioscler Thromb Vasc Biol. 2017;37:730–6.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28183702",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Hendriks EJ, Westerink J, de Jong PA, de Borst GJ, Nathoe HM, Mali WP, van der Graaf Y, van der Schouw YT, Beulens JW. Association of High Ankle Brachial Index With Incident Cardiovascular Disease and Mortality in a High-Risk Population. Arterioscler Thromb Vasc Biol. 2016;36:412–7.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26715681",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Walther G, Obert P, Dutheil F, Chapier R, Lesourd B, Naughton G, Courteix D, Vinet A. Metabolic syndrome individuals with and without type 2 diabetes mellitus present generalized vascular dysfunction: cross-sectional study. Arterioscler Thromb Vasc Biol. 2015;35:1022–9.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25657309",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Hertle E, Arts IC, van der Kallen CJ, Feskens EJ, Schalkwijk CG, Hoffmann-Petersen IT, Thiel S, Stehouwer CD, van Greevenbroek MM. Distinct Longitudinal Associations of MBL, MASP-1, MASP-2, MASP-3, and MAp44 With Endothelial Dysfunction and Intima-Media Thickness: The Cohort on Diabetes and Atherosclerosis Maastricht (CODAM) Study. Arterioscler Thromb Vasc Biol. 2016;36:1278–85.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27055907",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Breton-Romero R, Feng B, Holbrook M, Farb MG, Fetterman JL, Linder EA, Berk BD, Masaki N, Weisbrod RM, Inagaki E, Gokce N, Fuster JJ, Walsh K, Hamburg NM. Endothelial Dysfunction in Human Diabetes Is Mediated by Wnt5a-JNK Signaling. Arterioscler Thromb Vasc Biol. 2016;36:561–9.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4913891",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26800561",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Smits MM, Tonneijck L, Muskiet MH, Hoekstra T, Kramer MH, Diamant M, Serne EH, van Raalte DH. GLP-1-Based Therapies Have No Microvascular Effects in Type 2 Diabetes Mellitus: An Acute and 12-Week Randomized, Double-Blind, Placebo-Controlled Trial. Arterioscler Thromb Vasc Biol. 2016;36:2125–32.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27562916",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Liu G, Ding M, Chiuve SE, Rimm EB, Franks PW, Meigs JB, Hu FB, Sun Q. Plasma Levels of Fatty Acid-Binding Protein 4, Retinol-Binding Protein 4, High-Molecular-Weight Adiponectin, and Cardiovascular Mortality Among Men With Type 2 Diabetes: A 22-Year Prospective Study. Arterioscler Thromb Vasc Biol. 2016;36:2259–67.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5083188",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "27609367",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Qamar A, Khetarpal SA, Khera AV, Qasim A, Rader DJ, Reilly MP. Plasma apolipoprotein C-III levels, triglycerides, and coronary artery calcification in type 2 diabetics. Arterioscler Thromb Vasc Biol. 2015;35:1880–8.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4556282",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26069232",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Ryden M, Arner P. Subcutaneous Adipocyte Lipolysis Contributes to Circulating Lipid Levels. Arterioscler Thromb Vasc Biol. 2017;37:1782–7.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5567402",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "28663255",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Zhou H, Shiu SW, Wong Y, Tan KC. Impaired serum capacity to induce cholesterol efflux is associated with endothelial dysfunction in type 2 diabetes mellitus. Diab Vasc Dis Res. 2009;6:238–43.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "20368217",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Apro J, Tietge UJ, Dikkers A, Parini P, Angelin B, Rudling M. Impaired Cholesterol Efflux Capacity of High-Density Lipoprotein Isolated From Interstitial Fluid in Type 2 Diabetes Mellitus-Brief Report. Arterioscler Thromb Vasc Biol. 2016;36:787–91.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4845764",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "27034474",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Frej C, Mendez AJ, Ruiz M, Castillo M, Hughes TA, Dahlback B, Goldberg RB. A Shift in ApoM/S1P Between HDL-Particles in Women With Type 1 Diabetes Mellitus Is Associated With Impaired Anti-Inflammatory Effects of the ApoM/S1P Complex. Arterioscler Thromb Vasc Biol. 2017;37:1194–205.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28385702",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Denimal D, Monier S, Brindisi MC, Petit JM, Bouillet B, Nguyen A, Demizieux L, Simoneau I, Pais de Barros JP, Verges B, Duvillard L. Impairment of the Ability of HDL From Patients With Metabolic Syndrome but Without Diabetes Mellitus to Activate eNOS: Correction by S1P Enrichment. Arterioscler Thromb Vasc Biol. 2017;37:804–11.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28360087",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Xiao C, Dash S, Stahel P, Lewis GF. Effects of Intranasal Insulin on Triglyceride-Rich Lipoprotein Particle Production in Healthy Men. Arterioscler Thromb Vasc Biol. 2017;37:1776–81.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28751575",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Xiao C, Dash S, Morgantini C, Lewis GF. Intravenous Glucose Acutely Stimulates Intestinal Lipoprotein Secretion in Healthy Humans. Arterioscler Thromb Vasc Biol. 2016;36:1457–63.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27150393",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Ooi EM, Watts GF, Chan DC, Pang J, Tenneti VS, Hamilton SJ, McCormick SP, Marcovina SM, Barrett PH. Effects of extended-release niacin on the postprandial metabolism of Lp(a) and ApoB-100-containing lipoproteins in statin-treated men with type 2 diabetes mellitus. Arterioscler Thromb Vasc Biol. 2015;35:2686–93.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26515419",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Stadler K, Goldberg IJ, Susztak K. The evolving understanding of the contribution of lipid metabolism to diabetic kidney disease. Curr Diab Rep. 2015;15:40.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4548922",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "25957525",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Jin SM, Han KA, Yu JM, et al. Probucol in Albuminuric Type 2 Diabetes Mellitus Patients on Renin-Angiotensin System Blockade: A 16-Week, Randomized, Double-Blind, Placebo-Controlled Trial. Arterioscler Thromb Vasc Biol. 2016;36:2108–14.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27493100",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Goncalves I, Bengtsson E, Colhoun HM, et al. Elevated Plasma Levels of MMP-12 Are Associated With Atherosclerotic Burden and Symptomatic Cardiovascular Disease in Subjects With Type 2 Diabetes. Arterioscler Thromb Vasc Biol. 2015;35:1723–31.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25953645",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Akinkuolie AO, Pradhan AD, Buring JE, Ridker PM, Mora S. Novel protein glycan side-chain biomarker and risk of incident type 2 diabetes mellitus. Arterioscler Thromb Vasc Biol. 2015;35:1544–50.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4441588",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "25908766",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Pedersen ER, Tuseth N, Eussen SJ, Ueland PM, Strand E, Svingen GF, Midttun O, Meyer K, Mellgren G, Ulvik A, Nordrehaug JE, Nilsen DW, Nygard O. Associations of plasma kynurenines with risk of acute myocardial infarction in patients with stable angina pectoris. Arterioscler Thromb Vasc Biol. 2015;35:455–62.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25524770",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Durda P, Sabourin J, Lange EM, et al. Plasma Levels of Soluble Interleukin-2 Receptor alpha: Associations With Clinical Cardiovascular Events and Genome-Wide Association Scan. Arterioscler Thromb Vasc Biol. 2015;35:2246–53.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC5395092",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "26293465",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Rawal S, Munasinghe PE, Shindikar A, Paulin J, Cameron V, Manning P, Williams MJ, Jones GT, Bunton R, Galvin I, Katare R. Down-regulation of proangiogenic microRNA-126 and microRNA-132 are early modulators of diabetic cardiac microangiopathy. Cardiovasc Res. 2017;113:90–101.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "28065883",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Tang ST, Wang F, Shao M, Wang Y, Zhu HQ. MicroRNA-126 suppresses inflammation in endothelial cells under hyperglycemic condition by targeting HMGB1. Vascul Pharmacol. 2017;88:48–55.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27993686",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Fejes Z, Poliska S, Czimmerer Z, Kaplar M, Penyige A, Gal Szabo G, Beke Debreceni I, Kunapuli SP, Kappelmayer J, Nagy B., Jr Hyperglycaemia suppresses microRNA expression in platelets to increase P2RY12 and SELP levels in type 2 diabetes mellitus. Thromb Haemost. 2017;117:529–42.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "27975100",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Witkowski M, Weithauser A, Tabaraie T, Steffens D, Krankel N, Witkowski M, Stratmann B, Tschoepe D, Landmesser U, Rauch-Kroehnert U. Micro-RNA-126 Reduces the Blood Thrombogenicity in Diabetes Mellitus via Targeting of Tissue Factor. Arterioscler Thromb Vasc Biol. 2016;36:1263–71.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC4894779",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "27127202",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Dangwal S, Stratmann B, Bang C, Lorenzen JM, Kumarswamy R, Fiedler J, Falk CS, Scholz CJ, Thum T, Tschoepe D. Impairment of Wound Healing in Patients With Type 2 Diabetes Mellitus Influences Circulating MicroRNA Patterns via Inflammatory Cytokines. Arterioscler Thromb Vasc Biol. 2015;35:1480–8.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25814674",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Boon RA. Circulating MicroRNAs Link Inflammation to Impaired Wound Healing in Diabetes. Arterioscler Thromb Vasc Biol. 2015;35:1296–7.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "25995043",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Unknown": []
+    }
+  ]
+}

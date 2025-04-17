@@ -5,7 +5,12 @@ import "encoding/xml"
 // PubmedArticleSet is the root of a regular PubMed XML file.
 // It contains a list of PubmedArticle elements.
 type PubmedArticleSet struct {
-	PubmedArticles []PubmedArticle `xml:"PubmedArticle"`
+	PubmedArticles []PubmedArticle `xml:"PubmedArticle" json:"PubmedArticles"`
+}
+
+// PubmedBookArticleSet is the root for PubMed Book XML files.
+type PubmedBookArticleSet struct {
+	PubmedBookArticles []PubmedBookArticle `xml:"PubmedBookArticle" json:"PubmedBookArticles"`
 }
 
 // PubmedArticle represents one article in the PubMed XML.
@@ -15,11 +20,6 @@ type PubmedArticle struct {
 	MedlineCitation MedlineCitation  `xml:"MedlineCitation"`
 	PubmedData      PubmedData       `xml:"PubmedData"`
 	Unknown         []UnknownElement `xml:",any"`
-}
-
-// PubmedBookArticleSet is the root for PubMed Book XML files.
-type PubmedBookArticleSet struct {
-	PubmedBookArticles []PubmedBookArticle `xml:"PubmedBookArticle"`
 }
 
 // PubmedBookArticle represents one book chapter or article.
@@ -32,7 +32,7 @@ type PubmedBookArticle struct {
 type BookDocument struct {
 	PMID             string        `xml:"PMID"`
 	ArticleIdList    ArticleIdList `xml:"ArticleIdList"`
-	Book             string        `xml:"Book"`
+	Book             BookInfo      `xml:"Book"`
 	ArticleTitle     string        `xml:"ArticleTitle"`
 	Abstract         Abstract      `xml:"Abstract"`
 	KeywordList      []Keyword     `xml:"KeywordList>Keyword" json:"KeywordList"`
@@ -46,51 +46,82 @@ type BookDocument struct {
 	LocationLabel    string        `xml:"LocationLabel"`
 }
 
+type BookInfo struct {
+	Publisher struct {
+		PublisherName     string `xml:"PublisherName"`
+		PublisherLocation string `xml:"PublisherLocation"`
+	} `xml:"Publisher"`
+	BookTitle string `xml:"BookTitle"`
+	PubDate   struct {
+		Year  string `xml:"Year"`
+		Month string `xml:"Month"`
+	} `xml:"PubDate"`
+	BeginningDate struct {
+		Year  string `xml:"Year"`
+		Month string `xml:"Month"`
+	} `xml:"BeginningDate"`
+	Medium string `xml:"Medium"`
+}
+
 // MedlineCitation holds the main bibliographic content.
 type MedlineCitation struct {
-	PMID                    string          `xml:"PMID"`
-	DateCompleted           PubMedPubDate   `xml:"DateCompleted"`
-	DateRevised             PubMedPubDate   `xml:"DateRevised"`
-	Article                 Article         `xml:"Article"`
-	MedlineJournalInfo      Journal         `xml:"MedlineJournalInfo"`
-	ChemicalList            []Chemical      `xml:"ChemicalList>Chemical"`
-	SupplMeshList           SupplMeshList   `xml:"SupplMeshList"`
-	CitationSubset          string          `xml:"CitationSubset"`
-	CommentsCorrectionsList string          `xml:"CommentsCorrectionsList"`
-	GeneSymbolList          GeneSymbolList  `xml:"GeneSymbolList"`
-	MeshHeadingList         MeshHeadingList `xml:"MeshHeadingList"`
-	NumberOfReferences      string          `xml:"NumberOfReferences"`
-	PersonalNameSubjectList string          `xml:"PersonalNameSubjectList"`
-	OtherID                 string          `xml:"OtherID"`
-	OtherAbstract           Abstract        `xml:"OtherAbstract"`
-	KeywordList             []string        `xml:"KeywordList>Keyword" json:"KeywordList"`
-	CoiStatement            string          `xml:"CoiStatement"`
-	SpaceFlightMission      string          `xml:"SpaceFlightMission"`
-	InvestigatorList        string          `xml:"InvestigatorList"`
-	GeneralNote             string          `xml:"GeneralNote"`
-	Owner                   string          `xml:"Owner,attr"`
-	Status                  string          `xml:"Status,attr"`
-	Medline                 string          `xml:"MEDLINE,attr"`
-	VersionID               string          `xml:"VersionID,attr"`
-	VersionDate             string          `xml:"VersionDate,attr"`
-	IndexingMethod          string          `xml:"IndexingMethod,attr"`
+	PMID                    string                     `xml:"PMID"`
+	DateCompleted           PubMedPubDate              `xml:"DateCompleted"`
+	DateRevised             PubMedPubDate              `xml:"DateRevised"`
+	Article                 Article                    `xml:"Article"`
+	MedlineJournalInfo      Journal                    `xml:"MedlineJournalInfo"`
+	ChemicalList            []Chemical                 `xml:"ChemicalList>Chemical"`
+	SupplMeshList           SupplMeshList              `xml:"SupplMeshList"`
+	CitationSubset          string                     `xml:"CitationSubset"`
+	CommentsCorrectionsList []CommentsCorrectionsEntry `xml:"CommentsCorrectionsList>CommentsCorrections"`
+	GeneSymbolList          GeneSymbolList             `xml:"GeneSymbolList"`
+	MeshHeadingList         MeshHeadingList            `xml:"MeshHeadingList"`
+	NumberOfReferences      string                     `xml:"NumberOfReferences"`
+	PersonalNameSubjectList string                     `xml:"PersonalNameSubjectList"`
+	OtherID                 string                     `xml:"OtherID"`
+	OtherAbstract           Abstract                   `xml:"OtherAbstract"`
+	KeywordList             []string                   `xml:"KeywordList>Keyword" json:"KeywordList"`
+	CoiStatement            string                     `xml:"CoiStatement"`
+	SpaceFlightMission      string                     `xml:"SpaceFlightMission"`
+	InvestigatorList        string                     `xml:"InvestigatorList"`
+	GeneralNote             string                     `xml:"GeneralNote"`
+	Owner                   string                     `xml:"Owner,attr"`
+	Status                  string                     `xml:"Status,attr"`
+	Medline                 string                     `xml:"MEDLINE,attr"`
+	VersionID               string                     `xml:"VersionID,attr"`
+	VersionDate             string                     `xml:"VersionDate,attr"`
+	IndexingMethod          string                     `xml:"IndexingMethod,attr"`
+}
+
+// CommentsCorrectionsEntry represents a correction, retraction, or related citation.
+type CommentsCorrectionsEntry struct {
+	RefType   string `xml:"RefType,attr"`
+	RefSource string `xml:"RefSource"`
+	PMID      string `xml:"PMID"`
 }
 
 // PubmedBookData contains metadata for books like IDs and objects.
 type PubmedBookData struct {
-	History           string        `xml:"History"`
-	PublicationStatus string        `xml:"PublicationStatus"`
-	ArticleIdList     ArticleIdList `xml:"ArticleIdList"`
-	ObjectList        []Object      `xml:"ObjectList>Object"`
+	History           []PubmedPubDate `xml:"History>PubMedPubDate"`
+	PublicationStatus string          `xml:"PublicationStatus"`
+	ArticleIdList     ArticleIdList   `xml:"ArticleIdList"`
+	ObjectList        []Object        `xml:"ObjectList>Object"`
 }
 
 // PubmedData contains reference lists and metadata.
 type PubmedData struct {
-	History           []PubMedPubDate `xml:"History>PubMedPubDate"`
+	History           []PubmedPubDate `xml:"History>PubMedPubDate"`
 	PublicationStatus string          `xml:"PublicationStatus"`
 	ArticleIdList     ArticleIdList   `xml:"ArticleIdList"`
 	ObjectList        []Object        `xml:"ObjectList>Object"`
 	ReferenceList     []Reference     `xml:"ReferenceList>Reference" json:"ReferenceList"`
+}
+
+type PubmedPubDate struct {
+	PubStatus string `xml:"PubStatus,attr"`
+	Year      string `xml:"Year"`
+	Month     string `xml:"Month"`
+	Day       string `xml:"Day"`
 }
 
 // Abstract represents the article’s abstract.

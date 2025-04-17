@@ -13,24 +13,26 @@ import (
 // ------------------------ ConvertToJson ------------------------
 //
 
-// ConvertToJson serializes a parsed PubMed XML article set into formatted JSON
-// and validates the result against a predefined JSON Schema.
+// ConvertToJson serializes a parsed PubMed XML structure—either a PubmedArticleSet
+// or PubmedBookArticleSet—into formatted JSON and validates the output against a JSON Schema.
 //
 // Parameters:
-//   - result: A pointer to a PubmedArticleSet, representing the parsed PubMed XML structure.
-//   - file_name: The full destination path where the output JSON file should be written.
+//   - result: The parsed XML data as an interface{}, expected to be either
+//     *xmlTools.PubmedArticleSet or *xmlTools.PubmedBookArticleSet.
+//   - file_name: Full destination path where the output JSON should be saved.
 //
 // Behavior:
-//   - Calls NormalizePubmedArticleSet to ensure all required JSON arrays are non-nil.
-//   - Uses json.MarshalIndent to generate indented, human-readable output.
-//   - Writes the JSON to the target file using os.WriteFile.
-//   - Validates the written file against pubmed_json_schema.json.
+//   - Calls NormalizePubmedArticleSet to ensure critical array fields (e.g., KeywordList, ReferenceList)
+//     are non-nil in PubmedArticleSet (to avoid `null` in JSON).
+//   - Serializes the input structure to indented, human-readable JSON using json.MarshalIndent.
+//   - Writes the serialized output to the specified file path.
+//   - Validates the written JSON file against the pubmed_json_schema.json schema.
 //
 // Returns:
 //   - error: nil if successful, or an error from schema validation.
-//     Note: Failures in marshalling or writing will cause the function to exit via log.Fatal.
-func ConvertToJson(result *xmlTools.PubmedArticleSet, file_name string) error {
-	// Ensure all slice fields are non-nil to avoid `null` values in the output JSON.
+//     Critical failures during marshalling or writing will abort execution via log.Fatal.
+func ConvertToJson(result interface{}, file_name string) error {
+	// Normalize known structures (currently only PubmedArticleSet).
 	xmlTools.NormalizePubmedArticleSet(result)
 
 	// Serialize the data structure into formatted JSON.

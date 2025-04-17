@@ -7,77 +7,83 @@ import (
 )
 
 //
-// ------------------------ ParsePubmedArticleSet ------------------------
+// ------------------------ ParsePubmedXML ------------------------
 //
 
-// ParsePubmedArticleSet reads a PubMed XML file and parses its content into a structured
-// PubmedArticleSet object, which contains a slice of parsed PubMed articles.
+// ParsePubmedXML attempts to detect and parse a PubMed XML file as either a
+// PubmedArticleSet or PubmedBookArticleSet.
 //
 // Parameters:
-//   - filePath: The full path to the XML file to be opened and decoded.
+//   - filePath: Path to the XML file on disk.
 //
 // Returns:
-//   - *PubmedArticleSet: A pointer to the resulting parsed data structure.
-//   - error: An error if the file can't be opened or decoding fails.
+//   - Parsed result as an interface{} (either *PubmedArticleSet or *PubmedBookArticleSet).
+//   - Error if the file cannot be read or parsed as a known PubMed format.
 //
 // Behavior:
-//   - Uses os.Open to read the file, and ensures the file is closed with defer.
-//   - Uses encoding/xml.Decoder to stream and decode the XML content.
-//   - Returns a fully populated PubmedArticleSet if parsing succeeds.
-func ParsePubmedArticleSet(filePath string) (*PubmedArticleSet, error) {
-	// Open the specified XML file
-	f, err := os.Open(filePath)
+//   - Reads the XML file into memory.
+//   - Tries decoding into PubmedArticleSet first.
+//   - If no articles found, tries decoding as PubmedBookArticleSet.
+//   - If neither succeeds, returns an error indicating unknown structure.
+func ParsePubmedXML(filePath string) (interface{}, error) {
+	xmlBytes, err := os.ReadFile(filePath)
 	if err != nil {
-		// Return an error if the file can't be opened
-		return nil, fmt.Errorf("failed to open file: %w", err)
+		return nil, fmt.Errorf("failed to read file: %w", err)
 	}
-	defer f.Close() // Ensure the file is closed after parsing
 
-	// Prepare the target structure for XML decoding
 	var articleSet PubmedArticleSet
-
-	// Create an XML decoder for efficient token streaming
-	decoder := xml.NewDecoder(f)
-
-	// Decode the XML content into the target struct
-	if err := decoder.Decode(&articleSet); err != nil {
-		// Wrap and return decoding errors with context
-		return nil, fmt.Errorf("failed to decode XML: %w", err)
+	if err := xml.Unmarshal(xmlBytes, &articleSet); err == nil && len(articleSet.PubmedArticles) > 0 {
+		return &articleSet, nil
 	}
 
-	// Return the fully parsed result
-	return &articleSet, nil
+	var bookSet PubmedBookArticleSet
+	if err := xml.Unmarshal(xmlBytes, &bookSet); err == nil && len(bookSet.PubmedBookArticles) > 0 {
+		return &bookSet, nil
+	}
+
+	return nil, fmt.Errorf("unrecognized PubMed XML structure")
 }
 
 //
 // ------------------------ NormalizePubmedArticleSet ------------------------
 //
 
-// NormalizePubmedArticleSet ensures that key slice fields inside each PubmedArticle
+// NormalizePubmedArticleSet ensures that key slice fields inside a PubmedArticleSet
 // are never nil, which prevents them from being serialized as `null` in JSON output.
 //
 // This is especially important for JSON Schema validation, which expects arrays like
 // `KeywordList` and `ReferenceList` to be present (even if empty).
 //
 // Parameters:
-//   - set: A pointer to the PubmedArticleSet to normalize in-place.
+//   - data: The input PubmedArticleSet or PubmedBookArticleSet as an interface{}.
 //
 // Behavior:
+//   - If data is a *PubmedArticleSet:
 //   - Iterates over all PubmedArticles.
-//   - Ensures MedlineCitation.KeywordList is initialized to an empty slice if nil.
-//   - Ensures PubmedData.ReferenceList is initialized to an empty slice if nil.
-func NormalizePubmedArticleSet(set *PubmedArticleSet) {
-	for i := range set.PubmedArticles {
-		a := &set.PubmedArticles[i]
+//   - Ensures MedlineCitation.KeywordList is an empty []string if nil.
+//   - Ensures PubmedData.ReferenceList is an empty []Reference if nil.
+//   - Ensures Unknown is an empty []UnknownElement if nil.
+//   - Book normalization logic can be added in the future.
+func NormalizePubmedArticleSet(data interface{}) {
+	switch v := data.(type) {
+	case *PubmedArticleSet:
+		for i := range v.PubmedArticles {
+			article := &v.PubmedArticles[i]
 
-		// Ensure KeywordList is an empty slice instead of nil
-		if a.MedlineCitation.KeywordList == nil {
-			a.MedlineCitation.KeywordList = []string{}
-		}
+			// Normalize KeywordList
+			if article.MedlineCitation.KeywordList == nil {
+				article.MedlineCitation.KeywordList = []string{}
+			}
 
-		// Ensure ReferenceList is an empty slice instead of nil
-		if a.PubmedData.ReferenceList == nil {
-			a.PubmedData.ReferenceList = []Reference{}
+			// Normalize ReferenceList
+			if article.PubmedData.ReferenceList == nil {
+				article.PubmedData.ReferenceList = []Reference{}
+			}
+
+			// Normalize Unknown
+			if article.Unknown == nil {
+				article.Unknown = []UnknownElement{}
+			}
 		}
 	}
 }

@@ -1,0 +1,687 @@
+{
+  "PubmedArticles": [
+    {
+      "MedlineCitation": {
+        "PMID": "25537714",
+        "DateCompleted": {
+          "Year": "2015",
+          "Month": "07",
+          "Day": "08",
+          "Hour": "",
+          "Minute": "",
+          "PubStatus": ""
+        },
+        "DateRevised": {
+          "Year": "2022",
+          "Month": "12",
+          "Day": "07",
+          "Hour": "",
+          "Minute": "",
+          "PubStatus": ""
+        },
+        "Article": {
+          "Journal": {
+            "ISSN": "1935-5548",
+            "JournalIssue": "",
+            "Title": "Diabetes care",
+            "ISOAbbreviation": "Diabetes Care"
+          },
+          "ArticleTitle": "(2) Classification and diagnosis of diabetes.",
+          "Abstract": {
+            "AbstractText": "",
+            "CopyrightInformation": ""
+          },
+          "AuthorList": [
+            {
+              "LastName": "",
+              "ForeName": "",
+              "Initials": "",
+              "Suffix": "",
+              "CollectiveName": "American Diabetes Association",
+              "AffiliationInfo": null,
+              "ValidYN": "Y"
+            }
+          ],
+          "Language": [
+            "eng"
+          ],
+          "PublicationTypeList": [
+            {
+              "Text": "Journal Article",
+              "UI": "D016428"
+            },
+            {
+              "Text": "Practice Guideline",
+              "UI": "D017065"
+            },
+            {
+              "Text": "Review",
+              "UI": "D016454"
+            }
+          ],
+          "ArticleDate": ""
+        },
+        "MedlineJournalInfo": {
+          "ISSN": "",
+          "JournalIssue": "",
+          "Title": "",
+          "ISOAbbreviation": ""
+        },
+        "ChemicalList": [
+          {
+            "RegistryNumber": "0",
+            "NameOfSubstance": "Glycated Hemoglobin A"
+          },
+          {
+            "RegistryNumber": "0",
+            "NameOfSubstance": "hemoglobin A1c protein, human"
+          }
+        ],
+        "SupplMeshList": {
+          "SupplMeshNames": null
+        },
+        "CitationSubset": "IM",
+        "CommentsCorrectionsList": null,
+        "GeneSymbolList": {
+          "GeneSymbols": null
+        },
+        "MeshHeadingList": {
+          "MeshHeadings": [
+            {
+              "DescriptorName": "Diabetes Mellitus",
+              "Qualifiers": [
+                {
+                  "Text": "classification",
+                  "UI": "Q000145",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "diagnosis",
+                  "UI": "Q000175",
+                  "MajorTopicYN": "N"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Type 1",
+              "Qualifiers": [
+                {
+                  "Text": "classification",
+                  "UI": "Q000145",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "diagnosis",
+                  "UI": "Q000175",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Type 2",
+              "Qualifiers": [
+                {
+                  "Text": "classification",
+                  "UI": "Q000145",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "diagnosis",
+                  "UI": "Q000175",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes, Gestational",
+              "Qualifiers": [
+                {
+                  "Text": "classification",
+                  "UI": "Q000145",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "diagnosis",
+                  "UI": "Q000175",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Female",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Glucose Tolerance Test",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Glycated Hemoglobin",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Humans",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Pregnancy",
+              "Qualifiers": null
+            }
+          ]
+        },
+        "NumberOfReferences": "",
+        "PersonalNameSubjectList": "",
+        "OtherID": "",
+        "OtherAbstract": {
+          "AbstractText": "",
+          "CopyrightInformation": ""
+        },
+        "KeywordList": [],
+        "CoiStatement": "",
+        "SpaceFlightMission": "",
+        "InvestigatorList": "",
+        "GeneralNote": "",
+        "Owner": "NLM",
+        "Status": "MEDLINE",
+        "Medline": "",
+        "VersionID": "",
+        "VersionDate": "",
+        "IndexingMethod": "Curated"
+      },
+      "PubmedData": {
+        "History": [
+          {
+            "PubStatus": "entrez",
+            "Year": "2014",
+            "Month": "12",
+            "Day": "25"
+          },
+          {
+            "PubStatus": "pubmed",
+            "Year": "2014",
+            "Month": "12",
+            "Day": "30"
+          },
+          {
+            "PubStatus": "medline",
+            "Year": "2015",
+            "Month": "7",
+            "Day": "15"
+          }
+        ],
+        "PublicationStatus": "ppublish",
+        "ArticleIdList": {
+          "ArticleIds": [
+            {
+              "ID": "25537714",
+              "IdType": "pubmed"
+            },
+            {
+              "ID": "10.2337/dc15-S005",
+              "IdType": "doi"
+            },
+            {
+              "ID": "38/Supplement_1/S8",
+              "IdType": "pii"
+            }
+          ]
+        },
+        "ObjectList": null,
+        "ReferenceList": [
+          {
+            "Citation": "J Exp Med. 2000 Feb 21;191(4):603-12",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10684852",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes Care. 2015 Oct;38 Suppl 2:S4-7",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26405071",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2000 Aug;49(8):1314-8",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10923631",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2002 May;51(5):1346-55",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "11978629",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2004 Feb;53(2):384-92",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "14747289",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2004 Apr;36(4):337-8",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "15004560",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nature. 2004 Jun 3;429(6991):566-71",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "15152264",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2004 Nov;53(11):3020-3",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "15504986",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Exp Med. 1989 Jan 1;169(1):345-50",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "2909659",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Clin Endocrinol (Oxf). 1997 May;46(5):551-4",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "9231050",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Clin Endocrinol Metab. 1997 Dec;82(12):4130-2",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "9398726",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Am J Hum Genet. 2005 Jan;76(1):157-63",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "15558498",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2005 Dec;37(12):1317-9",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "16273109",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Annu Rev Immunol. 2006;24:65-97",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "16551244",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2006 Jun;38(6):617-9",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "16699517",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nature. 2006 Jul 6;442(7098):39-44",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "16823444",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Ann N Y Acad Sci. 2006 Oct;1079:1-8",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "17130525",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Clin Endocrinol Metab. 2007 Aug;92(8):3338-41",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "17535987",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Proc Natl Acad Sci U S A. 2007 Oct 23;104(43):17040-5",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "17942684",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2007 Nov;39(11):1329-37",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "17952073",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Autoimmun. 2008 Feb-Mar;30(1-2):58-62",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "18178059",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Eur J Hum Genet. 2008 Aug;16(8):977-82",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "18301444",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2008 Nov;57(11):3152-5",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "18694972",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "N Engl J Med. 2008 Dec 25;359(26):2767-77",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "19073967",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2009 Jan;58(1):e1; author reply e2",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "19114716",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Clin Endocrinol (Oxf). 2009 Mar;70(3):358-62",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "18710467",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Med Genet. 2009 Jul;46(7):469-71",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "19429597",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Hum Mol Genet. 2010 Jan 1;19(1):135-46",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "19825843",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2010 Jul;59(7):1561-71",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "20587799",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Thyroid. 2010 Jul;20(7):715-25",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "20604685",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2009 Jun;41(6):703-7",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "19430480",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "PLoS Genet. 2011 Aug;7(8):e1002216",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "21829393",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2011 Sep;43(9):897-901",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "21841780",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2011 Oct;60(10):2635-44",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "21831970",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Clin Endocrinol Metab. 2011 Oct;96(10):E1703-8",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "21816777",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Genet. 2011 Dec;43(12):1193-201",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "22057235",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetologia. 2012 Jul;55(7):1978-84",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "22526605",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Nat Rev Genet. 2013 Sep;14(9):661-73",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "23917628",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes. 2014 Jul;63(7):2516-27",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "24608439",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Diabetes Care. 2015 Oct;38 Suppl 2:S14-20",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "26405067",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "J Immunol. 2000 May 15;164(10):5199-206",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10799879",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Unknown": []
+    }
+  ]
+}

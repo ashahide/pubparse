@@ -47,7 +47,6 @@ func run() error {
 		return fmt.Errorf("input/output file count mismatch")
 	}
 
-	// Process each input file and generate JSON
 	for i := range args.InputPath.Files {
 		fin := args.InputPath.Files[i]
 		fout := args.OutputPath.Files[i]
@@ -58,13 +57,24 @@ func run() error {
 
 		fmt.Println("\nProcessing file:", fin)
 
-		result, err := xmlTools.ParsePubmedArticleSet(fin)
+		data, err := xmlTools.ParsePubmedXML(fin)
 		if err != nil {
 			return fmt.Errorf("failed to parse XML %q: %w", fin, err)
 		}
 
-		if err := jsonTools.ConvertToJson(result, fout); err != nil {
-			return fmt.Errorf("failed to convert to JSON %q: %w", fout, err)
+		switch v := data.(type) {
+		case *xmlTools.PubmedArticleSet:
+			fmt.Println("Detected: PubmedArticleSet")
+			if err := jsonTools.ConvertToJson(v, fout); err != nil {
+				return fmt.Errorf("failed to convert to JSON %q: %w", fout, err)
+			}
+		case *xmlTools.PubmedBookArticleSet:
+			fmt.Println("Detected: PubmedBookArticleSet")
+			if err := jsonTools.ConvertToJson(v, fout); err != nil {
+				return fmt.Errorf("failed to convert book to JSON %q: %w", fout, err)
+			}
+		default:
+			return fmt.Errorf("unsupported data type for file %q", fin)
 		}
 	}
 

@@ -1,8 +1,10 @@
 #!/bin/bash
 
-rm *.json *.xml
+rm test_pmc/*.json test_pmc/*.xml
 
-PMIDS="21193628 32387127 29282247 26247036 25537714 16444918"
+rm test_pubmed/*.json test_pubmed/*.xml
+
+PMIDS="21193628 32387127 29282247 26247036 25537714 16444918 30725926"
 
 for PMID in ${PMIDS}
 

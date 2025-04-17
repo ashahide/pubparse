@@ -1,0 +1,557 @@
+{
+  "PubmedArticles": [
+    {
+      "MedlineCitation": {
+        "PMID": "26247036",
+        "DateCompleted": {
+          "Year": "2016",
+          "Month": "03",
+          "Day": "29",
+          "Hour": "",
+          "Minute": "",
+          "PubStatus": ""
+        },
+        "DateRevised": {
+          "Year": "2022",
+          "Month": "04",
+          "Day": "09",
+          "Hour": "",
+          "Minute": "",
+          "PubStatus": ""
+        },
+        "Article": {
+          "Journal": {
+            "ISSN": "2314-6753",
+            "JournalIssue": "",
+            "Title": "Journal of diabetes research",
+            "ISOAbbreviation": "J Diabetes Res"
+          },
+          "ArticleTitle": "Complications of Diabetes.",
+          "Abstract": {
+            "AbstractText": "",
+            "CopyrightInformation": ""
+          },
+          "AuthorList": [
+            {
+              "LastName": "Papatheodorou",
+              "ForeName": "Konstantinos",
+              "Initials": "K",
+              "Suffix": "",
+              "CollectiveName": "",
+              "AffiliationInfo": [
+                {
+                  "Affiliation": "Diabetes Clinic, Second Department of Internal Medicine, Democritus University of Thrace, 68100 Alexandroupolis, Greece.",
+                  "Identifier": ""
+                }
+              ],
+              "ValidYN": "Y"
+            },
+            {
+              "LastName": "Banach",
+              "ForeName": "Maciej",
+              "Initials": "M",
+              "Suffix": "",
+              "CollectiveName": "",
+              "AffiliationInfo": [
+                {
+                  "Affiliation": "Department of Hypertension, Chair of Nephrology and Hypertension, Medical University of Lodz, 90-419 Lodz, Poland.",
+                  "Identifier": ""
+                }
+              ],
+              "ValidYN": "Y"
+            },
+            {
+              "LastName": "Edmonds",
+              "ForeName": "Michael",
+              "Initials": "M",
+              "Suffix": "",
+              "CollectiveName": "",
+              "AffiliationInfo": [
+                {
+                  "Affiliation": "Diabetic Foot Clinic, King's College Hospital, London SE59RS, UK.",
+                  "Identifier": ""
+                }
+              ],
+              "ValidYN": "Y"
+            },
+            {
+              "LastName": "Papanas",
+              "ForeName": "Nikolaos",
+              "Initials": "N",
+              "Suffix": "",
+              "CollectiveName": "",
+              "AffiliationInfo": [
+                {
+                  "Affiliation": "Diabetes Clinic, Second Department of Internal Medicine, Democritus University of Thrace, 68100 Alexandroupolis, Greece.",
+                  "Identifier": ""
+                }
+              ],
+              "ValidYN": "Y"
+            },
+            {
+              "LastName": "Papazoglou",
+              "ForeName": "Dimitrios",
+              "Initials": "D",
+              "Suffix": "",
+              "CollectiveName": "",
+              "AffiliationInfo": [
+                {
+                  "Affiliation": "Diabetes Clinic, Second Department of Internal Medicine, Democritus University of Thrace, 68100 Alexandroupolis, Greece.",
+                  "Identifier": ""
+                }
+              ],
+              "ValidYN": "Y"
+            }
+          ],
+          "Language": [
+            "eng"
+          ],
+          "PublicationTypeList": [
+            {
+              "Text": "Editorial",
+              "UI": "D016421"
+            },
+            {
+              "Text": "Introductory Journal Article",
+              "UI": "D054711"
+            }
+          ],
+          "ArticleDate": ""
+        },
+        "MedlineJournalInfo": {
+          "ISSN": "",
+          "JournalIssue": "",
+          "Title": "",
+          "ISOAbbreviation": ""
+        },
+        "ChemicalList": null,
+        "SupplMeshList": {
+          "SupplMeshNames": null
+        },
+        "CitationSubset": "IM",
+        "CommentsCorrectionsList": null,
+        "GeneSymbolList": {
+          "GeneSymbols": null
+        },
+        "MeshHeadingList": {
+          "MeshHeadings": [
+            {
+              "DescriptorName": "Animals",
+              "Qualifiers": null
+            },
+            {
+              "DescriptorName": "Diabetes Complications",
+              "Qualifiers": [
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "prevention \u0026 control",
+                  "UI": "Q000517",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Type 1",
+              "Qualifiers": [
+                {
+                  "Text": "complications",
+                  "UI": "Q000150",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "therapy",
+                  "UI": "Q000628",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Diabetes Mellitus, Type 2",
+              "Qualifiers": [
+                {
+                  "Text": "complications",
+                  "UI": "Q000150",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "physiopathology",
+                  "UI": "Q000503",
+                  "MajorTopicYN": "N"
+                },
+                {
+                  "Text": "therapy",
+                  "UI": "Q000628",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            },
+            {
+              "DescriptorName": "Humans",
+              "Qualifiers": null
+            }
+          ]
+        },
+        "NumberOfReferences": "",
+        "PersonalNameSubjectList": "",
+        "OtherID": "",
+        "OtherAbstract": {
+          "AbstractText": "",
+          "CopyrightInformation": ""
+        },
+        "KeywordList": [],
+        "CoiStatement": "",
+        "SpaceFlightMission": "",
+        "InvestigatorList": "",
+        "GeneralNote": "",
+        "Owner": "NLM",
+        "Status": "MEDLINE",
+        "Medline": "",
+        "VersionID": "",
+        "VersionDate": "",
+        "IndexingMethod": "Manual"
+      },
+      "PubmedData": {
+        "History": [
+          {
+            "PubStatus": "received",
+            "Year": "2015",
+            "Month": "2",
+            "Day": "2"
+          },
+          {
+            "PubStatus": "accepted",
+            "Year": "2015",
+            "Month": "2",
+            "Day": "2"
+          },
+          {
+            "PubStatus": "entrez",
+            "Year": "2015",
+            "Month": "8",
+            "Day": "7"
+          },
+          {
+            "PubStatus": "pubmed",
+            "Year": "2015",
+            "Month": "8",
+            "Day": "8"
+          },
+          {
+            "PubStatus": "medline",
+            "Year": "2016",
+            "Month": "3",
+            "Day": "30"
+          },
+          {
+            "PubStatus": "pmc-release",
+            "Year": "2015",
+            "Month": "7",
+            "Day": "12"
+          }
+        ],
+        "PublicationStatus": "ppublish",
+        "ArticleIdList": {
+          "ArticleIds": [
+            {
+              "ID": "26247036",
+              "IdType": "pubmed"
+            },
+            {
+              "ID": "PMC4515299",
+              "IdType": "pmc"
+            },
+            {
+              "ID": "10.1155/2015/189525",
+              "IdType": "doi"
+            }
+          ]
+        },
+        "ObjectList": null,
+        "ReferenceList": [
+          {
+            "Citation": "Giacco F., Brownlee M. Oxidative stress and diabetic complications. Circulation Research. 2010;107(9):1058–1070. doi: 10.1161/CIRCRESAHA.110.223545.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1161/CIRCRESAHA.110.223545",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC2996922",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "21030723",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Hassan R. H. Defect of insulin signal in peripheral tissues: important role of ceramide. World Journal of Diabetes. 2014;5(3):244–257. doi: 10.4239/wjd.v5.i3.244.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.4239/wjd.v5.i3.244",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC4058729",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "24936246",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Luchsinger J. A. Type 2 diabetes and cognitive impairment: linking mechanisms. Journal of Alzheimer's Disease. 2012;30(2):S185–S198. doi: 10.3233/jad-2012-111433.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.3233/jad-2012-111433",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC3372666",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "22433668",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Gatopoulou A., Papanas N., Maltezos E. Diabetic gastrointestinal autonomic neuropathy: current status and new achievements for everyday clinical practice. European Journal of Internal Medicine. 2012;23(6):499–505. doi: 10.1016/j.ejim.2012.03.001.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1016/j.ejim.2012.03.001",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "22863425",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Inchiostro S., Candido R., Cavalot F. How can we monitor glycaemic variability in the clinical setting? Diabetes, Obesity and Metabolism. 2013;15(supplement 2):13–16. doi: 10.1111/dom.12142.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1111/dom.12142",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "24034515",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Kato M., Arce L., Wang M., Putta S., Lanting L., Natarajan R. A microRNA circuit mediates transforming growth factor-β1 autoregulation in renal glomerular mesangial cells. Kidney International. 2011;80(4):358–368. doi: 10.1038/ki.2011.43.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1038/ki.2011.43",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC3337779",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "21389977",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Reddy M. A., Tak Park J., Natarajan R. Epigenetic modifications in the pathogenesis of diabetic nephropathy. Seminars in Nephrology. 2013;33(4):341–353. doi: 10.1016/j.semnephrol.2013.05.006.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1016/j.semnephrol.2013.05.006",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC3767931",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "24011576",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Monson J. P., Koios G., Toms G. C., et al. Relationship between retinopathy and glycaemic control in insulin-dependent and non-insulin-dependent diabetes. Journal of the Royal Society of Medicine. 1986;79(5):274–276.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "PMC1290311",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "3723520",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Omar A. F., Silva P. S., Sun J. K. Genetics of diabetic retinopathy. Seminars in Ophthalmology. 2013;28(5-6):337–346. doi: 10.3109/08820538.2013.825287.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.3109/08820538.2013.825287",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "24138043",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Santos K. G., Crispim D., Canani L. H., Ferrugem P. T., Gross J. L., Roisenberg I. Relationship of endothelial nitric oxide synthase (eNOS) gene polymorphisms with diabetic retinopathy in Caucasians with type 2 diabetes. Ophthalmic Genetics. 2012;33(1):23–27. doi: 10.3109/13816810.2011.620057.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.3109/13816810.2011.620057",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "22017289",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Kadoglou N. P., Avgerinos E. D., Liapis C. D. An update on markers of carotid atherosclerosis in patients with type 2 diabetes. Biomarkers in Medicine. 2010;4(4):601–609. doi: 10.2217/bmm.10.79.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.2217/bmm.10.79",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "20701448",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Armstrong D. G., Jude E. B. The role of matrix metalloproteinases in wound healing. Journal of the American Podiatric Medical Association. 2002;92(1):12–18. doi: 10.7547/87507315-92-1-12.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.7547/87507315-92-1-12",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "11796794",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Aiman U., Najmi A., Khan R. A. Statin-induced diabetes and its clinical implications. Journal of Pharmacology and Pharmacotherapeutics. 2014;5(3):181–185. doi: 10.4103/0976-500x.136097.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.4103/0976-500x.136097",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC4156828",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "25210397",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Klein H. A., Jackson S. M., Street K., Whitacre J. C., Klein G. Diabetes self-management education: miles to go. Nursing Research and Practice. 2013;2013:15. doi: 10.1155/2013/581012.581012",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1155/2013/581012",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC3616351",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "23577243",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Borén J., Matikainen N., Adiels M., Taskinen M.-R. Postprandial hypertriglyceridemia as a coronary risk factor. Clinica Chimica Acta. 2014;431:131–142. doi: 10.1016/j.cca.2014.01.015.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.1016/j.cca.2014.01.015",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "24508990",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          },
+          {
+            "Citation": "Xu C.-X., Zhu H.-H., Zhu Y.-M. Diabetes and cancer: associations, mechanisms, and implications for medical practice. World Journal of Diabetes. 2014;5(3):372–380. doi: 10.4239/wjd.v5.i3.372.",
+            "ArticleIdList": {
+              "ArticleIds": [
+                {
+                  "ID": "10.4239/wjd.v5.i3.372",
+                  "IdType": "doi"
+                },
+                {
+                  "ID": "PMC4058741",
+                  "IdType": "pmc"
+                },
+                {
+                  "ID": "24936258",
+                  "IdType": "pubmed"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Unknown": []
+    }
+  ]
+}
