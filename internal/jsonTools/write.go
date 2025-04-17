@@ -13,42 +13,44 @@ import (
 // ------------------------ ConvertToJson ------------------------
 //
 
-// ConvertToJson serializes a parsed PubMed XML data structure into a formatted JSON file
-// and validates the resulting output against a predefined JSON Schema.
+// ConvertToJson serializes a parsed PubMed XML article set into formatted JSON
+// and validates the result against a predefined JSON Schema.
 //
-// Arguments:
-//   - result: A pointer to a PubmedArticleSet (the parsed XML result).
-//   - file_name: The full file path where the output .json file should be written.
+// Parameters:
+//   - result: A pointer to a PubmedArticleSet, representing the parsed PubMed XML structure.
+//   - file_name: The full destination path where the output JSON file should be written.
 //
 // Behavior:
-//   - Uses json.MarshalIndent for pretty-printed output.
-//   - Writes the JSON file to the specified location with mode 0644.
-//   - Validates the file against pubmed_json_schema.json.
+//   - Calls NormalizePubmedArticleSet to ensure all required JSON arrays are non-nil.
+//   - Uses json.MarshalIndent to generate indented, human-readable output.
+//   - Writes the JSON to the target file using os.WriteFile.
+//   - Validates the written file against pubmed_json_schema.json.
 //
 // Returns:
-//   - error: If marshaling, writing, or schema validation fails.
-//     (If marshaling or writing fails, log.Fatal is called instead.)
+//   - error: nil if successful, or an error from schema validation.
+//     Note: Failures in marshalling or writing will cause the function to exit via log.Fatal.
 func ConvertToJson(result *xmlTools.PubmedArticleSet, file_name string) error {
-	// Marshal the result into a human-readable, indented JSON format
+	// Ensure all slice fields are non-nil to avoid `null` values in the output JSON.
+	xmlTools.NormalizePubmedArticleSet(result)
+
+	// Serialize the data structure into formatted JSON.
 	jsonData, err := json.MarshalIndent(result, "", "  ")
 	if err != nil {
-		// Fatal: stop the program on JSON marshal error
-		log.Fatal(err)
+		log.Fatal("failed to marshal result to JSON:", err)
 	}
 
-	// Write the JSON data to the specified output file
+	// Write the resulting JSON to the output file.
 	err = os.WriteFile(file_name, jsonData, 0644)
 	if err != nil {
-		// Fatal: stop the program on write error
-		log.Fatal(err)
+		log.Fatal("failed to write JSON to file:", err)
 	}
 
-	// Construct the absolute path to the validation schema
+	// Build the path to the validation schema.
 	schemaPath := filepath.Join("internal", "jsonTools", "pubmed_json_schema.json")
 
-	// Run schema validation on the newly created JSON file
+	// Validate the output file against the schema.
 	err = ValidateJsonAgainstSchema(file_name, schemaPath)
 
-	// Return any validation error (or nil if validation passes)
+	// Return the result of validation (nil if success, error if invalid).
 	return err
 }

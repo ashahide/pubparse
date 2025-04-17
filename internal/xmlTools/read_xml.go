@@ -10,40 +10,74 @@ import (
 // ------------------------ ParsePubmedArticleSet ------------------------
 //
 
-// ParsePubmedArticleSet opens and parses a PubMed XML file into a PubmedArticleSet struct.
+// ParsePubmedArticleSet reads a PubMed XML file and parses its content into a structured
+// PubmedArticleSet object, which contains a slice of parsed PubMed articles.
 //
-// Arguments:
-//   - filePath: Full path to the XML file to be parsed.
+// Parameters:
+//   - filePath: The full path to the XML file to be opened and decoded.
 //
 // Returns:
-//   - *PubmedArticleSet: A pointer to the parsed struct containing articles and metadata.
-//   - error: If the file cannot be opened or if XML parsing fails.
+//   - *PubmedArticleSet: A pointer to the resulting parsed data structure.
+//   - error: An error if the file can't be opened or decoding fails.
 //
 // Behavior:
-//   - Opens the file using os.Open and ensures it is closed with defer.
-//   - Uses encoding/xml's Decoder to parse the XML stream.
-//   - Returns a descriptive error if parsing fails.
+//   - Uses os.Open to read the file, and ensures the file is closed with defer.
+//   - Uses encoding/xml.Decoder to stream and decode the XML content.
+//   - Returns a fully populated PubmedArticleSet if parsing succeeds.
 func ParsePubmedArticleSet(filePath string) (*PubmedArticleSet, error) {
-	// Attempt to open the specified XML file
+	// Open the specified XML file
 	f, err := os.Open(filePath)
 	if err != nil {
-		// Return a wrapped error if the file cannot be opened
+		// Return an error if the file can't be opened
 		return nil, fmt.Errorf("failed to open file: %w", err)
 	}
-	defer f.Close()
+	defer f.Close() // Ensure the file is closed after parsing
 
-	// Declare a variable to store the parsed XML structure
+	// Prepare the target structure for XML decoding
 	var articleSet PubmedArticleSet
 
-	// Create a streaming XML decoder for efficient parsing
+	// Create an XML decoder for efficient token streaming
 	decoder := xml.NewDecoder(f)
 
-	// Attempt to decode the entire XML file into the articleSet structure
+	// Decode the XML content into the target struct
 	if err := decoder.Decode(&articleSet); err != nil {
-		// Return a wrapped error if parsing fails
+		// Wrap and return decoding errors with context
 		return nil, fmt.Errorf("failed to decode XML: %w", err)
 	}
 
-	// Return the successfully parsed result
+	// Return the fully parsed result
 	return &articleSet, nil
+}
+
+//
+// ------------------------ NormalizePubmedArticleSet ------------------------
+//
+
+// NormalizePubmedArticleSet ensures that key slice fields inside each PubmedArticle
+// are never nil, which prevents them from being serialized as `null` in JSON output.
+//
+// This is especially important for JSON Schema validation, which expects arrays like
+// `KeywordList` and `ReferenceList` to be present (even if empty).
+//
+// Parameters:
+//   - set: A pointer to the PubmedArticleSet to normalize in-place.
+//
+// Behavior:
+//   - Iterates over all PubmedArticles.
+//   - Ensures MedlineCitation.KeywordList is initialized to an empty slice if nil.
+//   - Ensures PubmedData.ReferenceList is initialized to an empty slice if nil.
+func NormalizePubmedArticleSet(set *PubmedArticleSet) {
+	for i := range set.PubmedArticles {
+		a := &set.PubmedArticles[i]
+
+		// Ensure KeywordList is an empty slice instead of nil
+		if a.MedlineCitation.KeywordList == nil {
+			a.MedlineCitation.KeywordList = []string{}
+		}
+
+		// Ensure ReferenceList is an empty slice instead of nil
+		if a.PubmedData.ReferenceList == nil {
+			a.PubmedData.ReferenceList = []Reference{}
+		}
+	}
 }

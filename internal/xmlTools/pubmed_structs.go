@@ -3,42 +3,41 @@ package xmlTools
 import "encoding/xml"
 
 // PubmedArticleSet is the root of a regular PubMed XML file.
-// It contains a list of articles.
+// It contains a list of PubmedArticle elements.
 type PubmedArticleSet struct {
 	PubmedArticles []PubmedArticle `xml:"PubmedArticle"`
 }
 
 // PubmedArticle represents one article in the PubMed XML.
 // It includes citation details and PubMed-specific metadata.
-// UnknownElement captures any tags that don't map to a known field.
+// Unknown captures unmapped tags.
 type PubmedArticle struct {
-	MedlineCitation MedlineCitation  `xml:"MedlineCitation"` // main article metadata
-	PubmedData      PubmedData       `xml:"PubmedData"`      // publication + reference info
-	Unknown         []UnknownElement `xml:",any"`            // fallback for unmapped XML
+	MedlineCitation MedlineCitation  `xml:"MedlineCitation"`
+	PubmedData      PubmedData       `xml:"PubmedData"`
+	Unknown         []UnknownElement `xml:",any"`
 }
 
-// PubmedBookArticleSet is the root of a PubMed Books XML file.
-// Similar to PubmedArticleSet, but for book chapters or books.
+// PubmedBookArticleSet is the root for PubMed Book XML files.
 type PubmedBookArticleSet struct {
 	PubmedBookArticles []PubmedBookArticle `xml:"PubmedBookArticle"`
 }
 
-// PubmedBookArticle represents one book chapter/article.
+// PubmedBookArticle represents one book chapter or article.
 type PubmedBookArticle struct {
 	BookDocument   BookDocument   `xml:"BookDocument"`
 	PubmedBookData PubmedBookData `xml:"PubmedBookData"`
 }
 
-// BookDocument holds the metadata about the book section or article.
+// BookDocument holds metadata about a book section or article.
 type BookDocument struct {
 	PMID             string        `xml:"PMID"`
-	ArticleIdList    ArticleIdList `xml:"ArticleIdList"` // multiple IDs (PubMed, DOI, etc.)
-	Book             string        `xml:"Book"`          // name of the book
+	ArticleIdList    ArticleIdList `xml:"ArticleIdList"`
+	Book             string        `xml:"Book"`
 	ArticleTitle     string        `xml:"ArticleTitle"`
 	Abstract         Abstract      `xml:"Abstract"`
-	KeywordList      []Keyword     `xml:"KeywordList>Keyword"`
+	KeywordList      []Keyword     `xml:"KeywordList>Keyword" json:"KeywordList"`
 	GrantList        GrantList     `xml:"GrantList"`
-	ReferenceList    []Reference   `xml:"ReferenceList>Reference"`
+	ReferenceList    []Reference   `xml:"ReferenceList>Reference" json:"ReferenceList"`
 	PublicationType  string        `xml:"PublicationType"`
 	InvestigatorList string        `xml:"InvestigatorList"`
 	ContributionDate string        `xml:"ContributionDate"`
@@ -47,24 +46,24 @@ type BookDocument struct {
 	LocationLabel    string        `xml:"LocationLabel"`
 }
 
-// MedlineCitation contains bibliographic metadata and tagging.
+// MedlineCitation holds the main bibliographic content.
 type MedlineCitation struct {
 	PMID                    string          `xml:"PMID"`
 	DateCompleted           PubMedPubDate   `xml:"DateCompleted"`
 	DateRevised             PubMedPubDate   `xml:"DateRevised"`
-	Article                 Article         `xml:"Article"` // actual article contents
+	Article                 Article         `xml:"Article"`
 	MedlineJournalInfo      Journal         `xml:"MedlineJournalInfo"`
 	ChemicalList            []Chemical      `xml:"ChemicalList>Chemical"`
 	SupplMeshList           SupplMeshList   `xml:"SupplMeshList"`
 	CitationSubset          string          `xml:"CitationSubset"`
 	CommentsCorrectionsList string          `xml:"CommentsCorrectionsList"`
 	GeneSymbolList          GeneSymbolList  `xml:"GeneSymbolList"`
-	MeshHeadingList         MeshHeadingList `xml:"MeshHeadingList"` // subject tags
+	MeshHeadingList         MeshHeadingList `xml:"MeshHeadingList"`
 	NumberOfReferences      string          `xml:"NumberOfReferences"`
 	PersonalNameSubjectList string          `xml:"PersonalNameSubjectList"`
 	OtherID                 string          `xml:"OtherID"`
 	OtherAbstract           Abstract        `xml:"OtherAbstract"`
-	KeywordList             []Keyword       `xml:"KeywordList>Keyword"`
+	KeywordList             []string        `xml:"KeywordList>Keyword" json:"KeywordList"`
 	CoiStatement            string          `xml:"CoiStatement"`
 	SpaceFlightMission      string          `xml:"SpaceFlightMission"`
 	InvestigatorList        string          `xml:"InvestigatorList"`
@@ -77,7 +76,7 @@ type MedlineCitation struct {
 	IndexingMethod          string          `xml:"IndexingMethod,attr"`
 }
 
-// PubmedBookData holds metadata for books, like article IDs or objects.
+// PubmedBookData contains metadata for books like IDs and objects.
 type PubmedBookData struct {
 	History           string        `xml:"History"`
 	PublicationStatus string        `xml:"PublicationStatus"`
@@ -85,46 +84,46 @@ type PubmedBookData struct {
 	ObjectList        []Object      `xml:"ObjectList>Object"`
 }
 
-// PubmedData contains reference lists and publication metadata.
+// PubmedData contains reference lists and metadata.
 type PubmedData struct {
-	History           []PubMedPubDate `xml:"History>PubMedPubDate"` // multiple status timestamps
+	History           []PubMedPubDate `xml:"History>PubMedPubDate"`
 	PublicationStatus string          `xml:"PublicationStatus"`
 	ArticleIdList     ArticleIdList   `xml:"ArticleIdList"`
 	ObjectList        []Object        `xml:"ObjectList>Object"`
-	ReferenceList     []Reference     `xml:"ReferenceList>Reference"`
+	ReferenceList     []Reference     `xml:"ReferenceList>Reference" json:"ReferenceList"`
 }
 
-// Abstract represents the abstract of the article.
+// Abstract represents the article’s abstract.
 type Abstract struct {
 	AbstractText         string `xml:"AbstractText"`
 	CopyrightInformation string `xml:"CopyrightInformation"`
 }
 
-// AffiliationInfo describes the author's institutional affiliation.
+// AffiliationInfo holds author affiliation metadata.
 type AffiliationInfo struct {
 	Affiliation string `xml:"Affiliation"`
 	Identifier  string `xml:"Identifier"`
 }
 
-// ArticleId represents one ID (e.g., DOI, PubMed ID, PII).
+// ArticleId represents one identifier (DOI, PMID, etc.).
 type ArticleId struct {
 	ID     string `xml:",chardata"`
 	IdType string `xml:"IdType,attr"`
 }
 
-// ArticleIdList is a list of ArticleIds.
+// ArticleIdList is a wrapper for multiple ArticleIds.
 type ArticleIdList struct {
 	ArticleIds []ArticleId `xml:"ArticleId"`
 }
 
-type Day struct{} // Not used, but placeholder if needed
+type Day struct{} // Placeholder if day-specific parsing is needed
 
-// GeneSymbolList contains genetic symbols associated with the paper.
+// GeneSymbolList represents a list of gene symbols.
 type GeneSymbolList struct {
 	GeneSymbols []string `xml:"GeneSymbol"`
 }
 
-// Grant contains funding information.
+// Grant holds one funding entry.
 type Grant struct {
 	GrantID string `xml:"GrantID"`
 	Acronym string `xml:"Acronym"`
@@ -132,25 +131,25 @@ type Grant struct {
 	Country string `xml:"Country"`
 }
 
-// GrantList holds multiple Grant entries.
+// GrantList contains multiple grants.
 type GrantList struct {
 	Grants     []Grant `xml:"Grant"`
 	CompleteYN string  `xml:"CompleteYN,attr"`
 }
 
-// UnknownElement catches any unparsed XML.
+// UnknownElement captures unparsed or unexpected XML.
 type UnknownElement struct {
 	XMLName xml.Name
 	Content string `xml:",innerxml"`
 }
 
-// ItemList is a named list of generic items.
+// ItemList represents a named list of items.
 type ItemList struct {
 	Items    []string `xml:"Item"`
 	ListType string   `xml:"ListType,attr"`
 }
 
-// Journal holds journal-level metadata.
+// Journal holds metadata about the journal.
 type Journal struct {
 	ISSN            string `xml:"ISSN"`
 	JournalIssue    string `xml:"JournalIssue"`
@@ -158,53 +157,53 @@ type Journal struct {
 	ISOAbbreviation string `xml:"ISOAbbreviation"`
 }
 
-// Keyword represents a tag/term assigned to the article.
+// Keyword is a keyword term.
 type Keyword struct {
 	Text string `xml:",chardata"`
 }
 
-// Reference holds the citation of a referenced article.
+// Reference is a cited publication.
 type Reference struct {
 	Citation      string        `xml:"Citation"`
 	ArticleIdList ArticleIdList `xml:"ArticleIdList"`
 }
 
-// Chemical is used for tagging chemicals related to the article.
+// Chemical holds chemical tag information.
 type Chemical struct {
 	RegistryNumber  string `xml:"RegistryNumber"`
 	NameOfSubstance string `xml:"NameOfSubstance"`
 }
 
-// LocationLabel is used for book/article structural info like "chapter".
+// LocationLabel provides structural location (e.g., "Chapter 2").
 type LocationLabel struct {
 	Type string `xml:"Type,attr"`
 }
 
-// QualifierName is used in MeSH tagging to add context to a descriptor.
+// QualifierName is a MeSH qualifier.
 type QualifierName struct {
 	Text         string `xml:",chardata"`
 	UI           string `xml:"UI,attr"`
 	MajorTopicYN string `xml:"MajorTopicYN,attr"`
 }
 
-// MeshHeading links descriptors with qualifiers to define subjects.
+// MeshHeading represents a subject term.
 type MeshHeading struct {
 	DescriptorName string          `xml:"DescriptorName"`
 	Qualifiers     []QualifierName `xml:"QualifierName"`
 }
 
-// MeshHeadingList holds all MeSH headings for the article.
+// MeshHeadingList contains all MeSH headings.
 type MeshHeadingList struct {
 	MeshHeadings []MeshHeading `xml:"MeshHeading"`
 }
 
-// Object is used for extra identifiers (datasets, repositories).
+// Object holds supplementary identifiers.
 type Object struct {
 	Param string `xml:"Param"`
 	Type  string `xml:"Type,attr"`
 }
 
-// PubMedPubDate stores a date + time + status like "published", "entrez", etc.
+// PubMedPubDate holds timestamped metadata (e.g., publication or update).
 type PubMedPubDate struct {
 	Year      string `xml:"Year"`
 	Month     string `xml:"Month"`
@@ -214,12 +213,12 @@ type PubMedPubDate struct {
 	PubStatus string `xml:"PubStatus,attr"`
 }
 
-// SupplMeshList is a list of supplementary MeSH terms.
+// SupplMeshList contains supplemental MeSH terms.
 type SupplMeshList struct {
 	SupplMeshNames []string `xml:"SupplMeshName"`
 }
 
-// Article holds core metadata of the article itself.
+// Article contains core article metadata.
 type Article struct {
 	Journal             Journal           `xml:"Journal"`
 	ArticleTitle        string            `xml:"ArticleTitle"`
@@ -230,7 +229,7 @@ type Article struct {
 	ArticleDate         string            `xml:"ArticleDate"`
 }
 
-// Author contains information about each author listed.
+// Author contains contributor metadata.
 type Author struct {
 	LastName        string            `xml:"LastName"`
 	ForeName        string            `xml:"ForeName"`
@@ -241,7 +240,7 @@ type Author struct {
 	ValidYN         string            `xml:"ValidYN,attr"`
 }
 
-// PublicationType describes how the article was classified (e.g., Review, Guideline).
+// PublicationType describes the article type (e.g., "Review").
 type PublicationType struct {
 	Text string `xml:",chardata"`
 	UI   string `xml:"UI,attr"`
