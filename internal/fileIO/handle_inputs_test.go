@@ -1,111 +1,91 @@
 package fileIO_test
 
-// import (
-// 	"os"
-// 	"path/filepath"
-// 	"testing"
+import (
+	"os"
+	"path/filepath"
+	"testing"
 
-// 	"github.com/ashahide/pubparse/internal/fileIO"
-// )
+	"github.com/ashahide/pubparse/internal/fileIO"
+)
 
-// // Test single XML file input
-// func TestHandleInputs_SingleFile(t *testing.T) {
-// 	tempDir := t.TempDir()
-// 	inputFile := filepath.Join(tempDir, "test_input.xml")
-// 	os.WriteFile(inputFile, []byte(`<root></root>`), 0644)
+func TestHandleInputs_SingleFile(t *testing.T) {
+	tmpDir := t.TempDir()
+	xmlPath := filepath.Join(tmpDir, "sample.xml")
 
-// 	args := &fileIO.Arguments{
-// 		InputPath: fileIO.PathInfo{
-// 			Path: inputFile,
-// 		},
-// 	}
+	// create a fake XML file
+	if err := os.WriteFile(xmlPath, []byte("<root></root>"), 0644); err != nil {
+		t.Fatalf("failed to create test file: %v", err)
+	}
 
-// 	err := fileIO.HandleInputs(args)
-// 	if err != nil {
-// 		t.Fatalf("HandleInputs failed: %v", err)
-// 	}
+	args := &fileIO.Arguments{
+		InputPath: fileIO.PathInfo{Path: xmlPath},
+	}
 
-// 	if args.InputPath.Info == nil {
-// 		t.Fatal("InputPath.Info is nil")
-// 	}
-// 	if len(args.InputPath.Files) != 1 {
-// 		t.Fatalf("expected 1 input file, got %d", len(args.InputPath.Files))
-// 	}
-// 	if len(args.OutputPath.Files) != 1 {
-// 		t.Fatalf("expected 1 output file, got %d", len(args.OutputPath.Files))
-// 	}
-// 	if filepath.Ext(args.OutputPath.Files[0].Name()) != ".json" {
-// 		t.Errorf("expected .json extension, got %s", args.OutputPath.Files[0].Name())
-// 	}
-// }
+	if err := fileIO.HandleInputs(args); err != nil {
+		t.Errorf("HandleInputs failed for single file: %v", err)
+	}
 
-// // Test multiple XML files in a directory
-// func TestHandleInputs_Directory(t *testing.T) {
-// 	tempDir := t.TempDir()
-// 	fileNames := []string{"a.xml", "b.xml", "c.xml"}
-// 	for _, name := range fileNames {
-// 		os.WriteFile(filepath.Join(tempDir, name), []byte(`<doc></doc>`), 0644)
-// 	}
+	if len(args.InputPath.Files) != 1 {
+		t.Errorf("expected 1 file, got %d", len(args.InputPath.Files))
+	}
+}
 
-// 	args := &fileIO.Arguments{
-// 		InputPath: fileIO.PathInfo{
-// 			Path: tempDir,
-// 		},
-// 	}
+func TestHandleInputs_Directory(t *testing.T) {
+	tmpDir := t.TempDir()
+	file1 := filepath.Join(tmpDir, "a.xml")
+	file2 := filepath.Join(tmpDir, "b.xml")
+	os.WriteFile(file1, []byte("<a></a>"), 0644)
+	os.WriteFile(file2, []byte("<b></b>"), 0644)
 
-// 	err := fileIO.HandleInputs(args)
-// 	if err != nil {
-// 		t.Fatalf("HandleInputs failed: %v", err)
-// 	}
+	args := &fileIO.Arguments{
+		InputPath: fileIO.PathInfo{Path: tmpDir},
+	}
 
-// 	if len(args.InputPath.Files) != len(fileNames) {
-// 		t.Errorf("expected %d input files, got %d", len(fileNames), len(args.InputPath.Files))
-// 	}
-// 	if len(args.OutputPath.Files) != len(fileNames) {
-// 		t.Errorf("expected %d output files, got %d", len(fileNames), len(args.OutputPath.Files))
-// 	}
-// 	for _, out := range args.OutputPath.Files {
-// 		if filepath.Ext(out.Name()) != ".json" {
-// 			t.Errorf("expected .json extension, got %s", out.Name())
-// 		}
-// 	}
-// }
+	if err := fileIO.HandleInputs(args); err != nil {
+		t.Errorf("HandleInputs failed for directory: %v", err)
+	}
 
-// // Test non-existent path
-// func TestHandleInputs_InvalidPath(t *testing.T) {
-// 	args := &fileIO.Arguments{
-// 		InputPath: fileIO.PathInfo{
-// 			Path: "/nonexistent/path/to/file.xml",
-// 		},
-// 	}
+	if len(args.InputPath.Files) != 2 {
+		t.Errorf("expected 2 files, got %d", len(args.InputPath.Files))
+	}
+}
 
-// 	err := fileIO.HandleInputs(args)
-// 	if err == nil {
-// 		t.Fatal("expected error for non-existent path, got nil")
-// 	}
-// }
+func TestHandleInputs_MissingPath(t *testing.T) {
+	args := &fileIO.Arguments{
+		InputPath: fileIO.PathInfo{Path: ""},
+	}
 
-// // Test file with wrong extension is skipped
-// func TestHandleInputs_SkipWrongExtension(t *testing.T) {
-// 	tempDir := t.TempDir()
-// 	_ = os.WriteFile(filepath.Join(tempDir, "skip.txt"), []byte(`text`), 0644)
-// 	_ = os.WriteFile(filepath.Join(tempDir, "valid.xml"), []byte(`<root/>`), 0644)
+	err := fileIO.HandleInputs(args)
+	if err == nil {
+		t.Error("expected error for missing input path, got nil")
+	}
+}
 
-// 	args := &fileIO.Arguments{
-// 		InputPath: fileIO.PathInfo{
-// 			Path: tempDir,
-// 		},
-// 	}
+func TestHandleInputs_WrongExtension(t *testing.T) {
+	tmpDir := t.TempDir()
+	txtFile := filepath.Join(tmpDir, "not_xml.txt")
+	os.WriteFile(txtFile, []byte("not an xml"), 0644)
 
-// 	err := fileIO.HandleInputs(args)
-// 	if err != nil {
-// 		t.Fatalf("HandleInputs failed: %v", err)
-// 	}
+	args := &fileIO.Arguments{
+		InputPath: fileIO.PathInfo{Path: tmpDir},
+	}
 
-// 	if len(args.InputPath.Files) != 1 {
-// 		t.Errorf("expected 1 valid input file, got %d", len(args.InputPath.Files))
-// 	}
-// 	if args.InputPath.Files[0].Name() != "valid.xml" {
-// 		t.Errorf("expected input file 'valid.xml', got %s", args.InputPath.Files[0].Name())
-// 	}
-// }
+	err := fileIO.HandleInputs(args)
+	if err != nil {
+		// expected to skip the file, but not fail unless no valid XML files
+		t.Logf("Handled wrong extension correctly: %v", err)
+	} else if len(args.InputPath.Files) > 0 {
+		t.Errorf("expected no files, got %d", len(args.InputPath.Files))
+	}
+}
+
+func TestHandleInputs_InvalidPath(t *testing.T) {
+	args := &fileIO.Arguments{
+		InputPath: fileIO.PathInfo{Path: "/this/does/not/exist"},
+	}
+
+	err := fileIO.HandleInputs(args)
+	if err == nil {
+		t.Error("expected error for non-existent path, got nil")
+	}
+}

@@ -7,12 +7,12 @@ import (
 )
 
 func HandleOutputs(args *Arguments) error {
-	processDir, err := getProcessDir(args.InputPath.Path, args.InputPath.Info)
+	processDir, err := GetProcessDir(args.InputPath.Path, args.InputPath.Info)
 	if err != nil {
 		return err
 	}
 
-	if err := ensureDir(processDir); err != nil {
+	if err := EnsureDir(processDir); err != nil {
 		return err
 	}
 
@@ -21,7 +21,7 @@ func HandleOutputs(args *Arguments) error {
 		return err
 	}
 
-	if err := verifyWriteAccess(outputFiles); err != nil {
+	if err := VerifyWriteAccess(outputFiles); err != nil {
 		return err
 	}
 
@@ -39,7 +39,7 @@ func HandleOutputs(args *Arguments) error {
 	return nil
 }
 
-func getProcessDir(inputPath string, inputInfo os.FileInfo) (string, error) {
+func GetProcessDir(inputPath string, inputInfo os.FileInfo) (string, error) {
 	if inputInfo.IsDir() {
 		return filepath.Join(filepath.Dir(inputPath), "process"), nil
 	}
@@ -48,11 +48,11 @@ func getProcessDir(inputPath string, inputInfo os.FileInfo) (string, error) {
 	return filepath.Join(grandParent, "process"), nil
 }
 
-func ensureDir(path string) error {
+func EnsureDir(path string) error {
 	return os.MkdirAll(path, 0755)
 }
 
-func verifyWriteAccess(paths []string) error {
+func VerifyWriteAccess(paths []string) error {
 	for _, p := range paths {
 		dir := filepath.Dir(p)
 		if err := os.MkdirAll(dir, 0755); err != nil {
