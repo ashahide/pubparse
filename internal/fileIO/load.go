@@ -16,7 +16,7 @@ func LoadFilesInDir(dirInfo PathInfo, desiredTypeExt string) (PathInfo, error) {
 		if err != nil {
 			return dirInfo, fmt.Errorf("could not read file %q: %w", dirInfo.Path, err)
 		}
-		dirInfo.Files = append(dirInfo.Files, entry)
+		dirInfo.Files = append(dirInfo.Files, entry.Name())
 		return dirInfo, nil
 	}
 
@@ -31,7 +31,7 @@ func LoadFilesInDir(dirInfo PathInfo, desiredTypeExt string) (PathInfo, error) {
 
 	for _, entry := range entries {
 		fullPath := filepath.Join(dirInfo.Path, entry.Name())
-		fileInfo, err := VerifyPath(fullPath, desiredTypeExt)
+		_, err := VerifyPath(fullPath, desiredTypeExt)
 		if err != nil {
 			// Check if it's a WrongExtensionError and skip
 			var extErr *customErrors.WrongExtensionError
@@ -42,7 +42,8 @@ func LoadFilesInDir(dirInfo PathInfo, desiredTypeExt string) (PathInfo, error) {
 			return dirInfo, fmt.Errorf("failed to verify path for file %q: %w", fullPath, err)
 		}
 
-		dirInfo.Files = append(dirInfo.Files, fileInfo)
+		dirInfo.Files = append(dirInfo.Files, fullPath)
+
 	}
 
 	return dirInfo, nil

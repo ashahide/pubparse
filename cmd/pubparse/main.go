@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 
 	"github.com/ashahide/pubparse/internal/fileIO"
 	"github.com/ashahide/pubparse/internal/jsonTools"
@@ -29,29 +28,41 @@ func run() error {
 	// Process Inputs
 	fileIO.HandleInputs(&args)
 
+	// Process Outputs
+	fileIO.HandleOutputs(&args)
+
 	// Print file info
-	fmt.Println("Input Path:", args.InputPath.Path)
+	fmt.Println("\nInput Path:", args.InputPath.Path)
 	for _, f := range args.InputPath.Files {
-		fmt.Printf(" - %s (%d bytes)\n", f.Name(), f.Size())
+		fmt.Printf("\n- %s", f)
 	}
 
-	fmt.Println("Output Path:", args.OutputPath.Path)
+	fmt.Println("\nOutput Path:", args.OutputPath.Path)
 	for _, f := range args.OutputPath.Files {
-		fmt.Printf(" - %s (%d bytes)\n", f.Name(), f.Size())
+		fmt.Printf("\n- %s", f)
+	}
+
+	if len(args.InputPath.Files) != len(args.OutputPath.Files) {
+		return fmt.Errorf("input/output file count mismatch")
 	}
 
 	for i := range args.InputPath.Files {
 		fin := args.InputPath.Files[i]
 		fout := args.OutputPath.Files[i]
 
-		fmt.Println("Processing file:", fin.Name())
+		// Make output files
+		if err := fileIO.MakeFile(fout); err != nil {
+			return fmt.Errorf("failed to create output file %q: %w", fout, err)
+		}
 
-		result, err := xmlTools.ParsePubmedArticleSet(filepath.Join(args.InputPath.Path, fin.Name()))
+		fmt.Println("\nProcessing file:", fin)
+
+		result, err := xmlTools.ParsePubmedArticleSet(fin)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		err = jsonTools.ConvertToJson(result, args.OutputPath.Path, fout)
+		err = jsonTools.ConvertToJson(result, fout)
 		if err != nil {
 			log.Fatal(err)
 		}

@@ -59,3 +59,16 @@ func VerifyPath(path string, fileType string) (os.FileInfo, error) {
 	// Return the FileInfo if all checks passed
 	return info, nil
 }
+
+// GenerateJSONFileInfos creates output .json file paths based on input files.
+func GenerateJSONFileInfos(inputFiles []string, outputDir string) ([]string, error) {
+	var outputPaths []string
+
+	for _, entry := range inputFiles {
+		newFileName := ChangeExtension(entry, "json")
+		fullPath := filepath.Join(outputDir, newFileName)
+		outputPaths = append(outputPaths, fullPath)
+	}
+
+	return outputPaths, nil
+}

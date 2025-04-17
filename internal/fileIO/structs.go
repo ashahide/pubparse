@@ -10,5 +10,5 @@ type Arguments struct {
 type PathInfo struct {
 	Path  string
 	Info  os.FileInfo
-	Files []os.FileInfo
+	Files []string
 }

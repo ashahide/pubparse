@@ -2,7 +2,6 @@ package fileIO
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 )
 
@@ -18,11 +17,6 @@ func HandleInputs(args *Arguments) error {
 
 	// Step 2: Load XML files from the validated input path
 	if err = populateInputFiles(args); err != nil {
-		return err
-	}
-
-	// Step 3: Prepare output paths and filenames based on the inputs
-	if err = prepareOutputPath(args); err != nil {
 		return err
 	}
 
@@ -62,34 +56,5 @@ func populateInputFiles(args *Arguments) error {
 	if err != nil {
 		return fmt.Errorf("failed to load input files from %q: %w", args.InputPath.Path, err)
 	}
-	return nil
-}
-
-// prepareOutputPath creates output file paths by changing the extension of each input file to .json.
-// It sets the output path and verifies the output destination.
-func prepareOutputPath(args *Arguments) error {
-	// Use input directory as base for outputs
-	args.OutputPath = PathInfo{
-		Path:  args.InputPath.Path,
-		Info:  args.InputPath.Info,
-		Files: append([]os.FileInfo(nil), args.InputPath.Files...),
-	}
-
-	if !args.InputPath.Info.IsDir() {
-		// Use the parent directory, not the file name with .json
-		args.OutputPath.Path = filepath.Dir(args.OutputPath.Path)
-	}
-
-	var err error
-	args.OutputPath.Files, err = ConvertXMLtoJSON(args.OutputPath.Files, args.OutputPath.Path)
-	if err != nil {
-		return fmt.Errorf("failed to convert input file names to JSON: %w", err)
-	}
-
-	args.OutputPath.Info, err = VerifyPath(args.OutputPath.Path, "")
-	if err != nil {
-		return fmt.Errorf("failed to verify output path %q: %w", args.OutputPath.Path, err)
-	}
-
 	return nil
 }
