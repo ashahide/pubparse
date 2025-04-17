@@ -31,4 +31,6 @@ go.work.sum
 test/test_pubmed/*.json
 test/test_pubmed/*.xml
 
+test/test_pmc
+
 /bin
