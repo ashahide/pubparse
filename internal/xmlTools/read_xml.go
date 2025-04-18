@@ -167,4 +167,24 @@ func NormalizePMCArticle(article *PMCArticle) {
 	if article.Front.ArticleMeta.Abstract != nil && article.Front.ArticleMeta.Abstract.Paragraphs == nil {
 		article.Front.ArticleMeta.Abstract.Paragraphs = []string{}
 	}
+
+	if article.Back == nil {
+		article.Back = &PMCBack{
+			Acknowledgments: &PMCAcknowledgments{Paragraphs: []string{}},
+			References:      &PMCReferences{References: []PMCReference{}},
+		}
+	} else {
+		if article.Back.Acknowledgments == nil {
+			article.Back.Acknowledgments = &PMCAcknowledgments{Paragraphs: []string{}}
+		} else if article.Back.Acknowledgments.Paragraphs == nil {
+			article.Back.Acknowledgments.Paragraphs = []string{}
+		}
+
+		if article.Back.References == nil {
+			article.Back.References = &PMCReferences{References: []PMCReference{}}
+		} else if article.Back.References.References == nil {
+			article.Back.References.References = []PMCReference{}
+		}
+	}
+
 }

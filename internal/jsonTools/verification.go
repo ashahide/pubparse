@@ -38,9 +38,7 @@ func ValidateJsonAgainstSchema(path_to_json string, path_to_schema string) error
 	}
 
 	// Output validation results
-	if result.Valid() {
-		fmt.Println("JSON is valid against the schema.")
-	} else {
+	if !result.Valid() {
 		fmt.Println("JSON is NOT valid against the schema.")
 		for _, desc := range result.Errors() {
 			fmt.Println(" -", desc)
