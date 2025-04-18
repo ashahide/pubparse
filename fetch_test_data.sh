@@ -86,18 +86,18 @@ for TARBALL in "${PMC_TARBALLS[@]}"; do
 
     echo "Downloading: $BASENAME"
     if ! curl -s -f "$TARBALL_URL" -o "$DEST"; then
-        echo "⚠️  Failed to download $TARBALL_URL — skipping"
+        echo "Failed to download $TARBALL_URL — skipping"
         continue
     fi
 
     echo "Extracting: $BASENAME"
     if tar -xzf "$DEST" -C "$EXTRACT_DIR" --strip-components=1; then
-        echo "✅ Extracted: $BASENAME"
+        echo "Extracted: $BASENAME"
         rm "$DEST"
     else
-        echo "❌ Failed to extract $BASENAME (invalid archive?)"
+        echo "Failed to extract $BASENAME (invalid archive?)"
         break
     fi
 done
 
-echo "✅ Test data generation complete."
+echo "Test data generation complete."
