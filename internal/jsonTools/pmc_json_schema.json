@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PMCArticle",
+  "type": "object",
+  "properties": {
+    "Front": {},
+    "Body": {},
+    "Back": {
+      "type": "object",
+      "properties": {
+        "Acknowledgments": {
+          "type": "object",
+          "properties": {
+            "Paragraphs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "References": {
+          "type": "object",
+          "properties": {
+            "References": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ID": {
+                    "type": "string"
+                  },
+                  "ElementCitation": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "PublicationType": {
+                        "type": "string"
+                      },
+                      "ArticleTitle": {
+                        "type": "string"
+                      },
+                      "Source": {
+                        "type": "string"
+                      },
+                      "Year": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "ID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "FloatsGroup": {}
+  },
+  "required": [
+    "Front"
+  ]
+}
