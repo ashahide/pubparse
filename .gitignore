@@ -28,13 +28,6 @@ go.work.sum
 
 .vscode
 
-test/test_pubmed/
-test/test_pubmed/
-test/test_pubmed/
-
-test/test_pmc/
-test/test_pmc/
-test/test_pmc/
-test/test_pmc/
+test/data
 
 /bin
