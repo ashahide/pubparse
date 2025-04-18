@@ -28,12 +28,13 @@ go.work.sum
 
 .vscode
 
-test/test_pubmed/*.json
-test/test_pubmed/*.xml
-test/test_pubmed/*.tar.gz
+test/test_pubmed/
+test/test_pubmed/
+test/test_pubmed/
 
-test/test_pmc/*.json
-test/test_pmc/*.xml
-test/test_pmc/*.tar.gz
+test/test_pmc/
+test/test_pmc/
+test/test_pmc/
+test/test_pmc/
 
 /bin

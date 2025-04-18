@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"os"
-	"path/filepath"
 
 	"github.com/ashahide/pubparse/internal/xmlTools"
 )
@@ -13,46 +12,48 @@ import (
 // ------------------------ ConvertToJson ------------------------
 //
 
-// ConvertToJson serializes a parsed PubMed XML structure—either a PubmedArticleSet
-// or PubmedBookArticleSet—into formatted JSON and validates the output against a JSON Schema.
-//
-// Parameters:
-//   - result: The parsed XML data as an interface{}, expected to be either
-//     *xmlTools.PubmedArticleSet or *xmlTools.PubmedBookArticleSet.
-//   - file_name: Full destination path where the output JSON should be saved.
-//
-// Behavior:
-//   - Calls NormalizePubmedArticleSet to ensure critical array fields (e.g., KeywordList, ReferenceList)
-//     are non-nil in PubmedArticleSet (to avoid `null` in JSON).
-//   - Serializes the input structure to indented, human-readable JSON using json.MarshalIndent.
-//   - Writes the serialized output to the specified file path.
-//   - Validates the written JSON file against the pubmed_json_schema.json schema.
-//
-// Returns:
-//   - error: nil if successful, or an error from schema validation.
-//     Critical failures during marshalling or writing will abort execution via log.Fatal.
-func ConvertToJson(result interface{}, file_name string) error {
-	// Normalize known structures (currently only PubmedArticleSet).
+/*
+ConvertToJson serializes a parsed PubMed XML structure (e.g., PubmedArticleSet or PubmedBookArticleSet)
+into a pretty-printed JSON file and validates it against a JSON Schema.
+
+Parameters:
+  - result: Parsed XML structure, expected to be one of:
+    *xmlTools.PubmedArticleSet or *xmlTools.PubmedBookArticleSet.
+  - file_name: Full path where the JSON output should be saved.
+  - schemapath: Path to the JSON schema used for validation.
+
+Behavior:
+  - Normalizes known XML types (currently only PubmedArticleSet) to ensure required
+    slice fields are not nil (e.g., KeywordList, ReferenceList).
+  - Serializes the normalized structure into human-readable indented JSON.
+  - Saves the serialized JSON to the specified file path.
+  - Validates the written file against the JSON schema.
+
+Returns:
+  - error: Validation error if the JSON does not conform to the schema; otherwise nil.
+
+Note:
+  - Any failure during JSON encoding or file writing is fatal and will terminate the program.
+*/
+func ConvertToJson(result interface{}, file_name string, schemapath string) error {
+	// Normalize nil slices in known types (avoids `null` in JSON).
 	xmlTools.NormalizePubmedArticleSet(result)
 
-	// Serialize the data structure into formatted JSON.
+	// Marshal the data to indented JSON.
 	jsonData, err := json.MarshalIndent(result, "", "  ")
 	if err != nil {
 		log.Fatal("failed to marshal result to JSON:", err)
 	}
 
-	// Write the resulting JSON to the output file.
+	// Write the JSON to the specified file.
 	err = os.WriteFile(file_name, jsonData, 0644)
 	if err != nil {
 		log.Fatal("failed to write JSON to file:", err)
 	}
 
-	// Build the path to the validation schema.
-	schemaPath := filepath.Join("internal", "jsonTools", "pubmed_json_schema.json")
+	// Validate the written file against the provided JSON schema.
+	err = ValidateJsonAgainstSchema(file_name, schemapath)
 
-	// Validate the output file against the schema.
-	err = ValidateJsonAgainstSchema(file_name, schemaPath)
-
-	// Return the result of validation (nil if success, error if invalid).
+	// Return validation result (or nil if successful).
 	return err
 }

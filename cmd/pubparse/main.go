@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/ashahide/pubparse/internal/fileIO"
 	"github.com/ashahide/pubparse/internal/jsonTools"
@@ -43,8 +44,6 @@ func run() error {
 		if err := cmd.Parse(os.Args[2:]); err != nil {
 			return err
 		}
-
-		return fmt.Errorf("PMC mode is not yet implemented")
 
 	default:
 		return fmt.Errorf("unknown subcommand: %s\nUsage: pubparse [pubmed|pmc] -i input -o output", mode)
@@ -87,7 +86,7 @@ func run() error {
 		var data interface{}
 		var xml_parse_err error
 		switch mode {
-		case "pubmed":
+		case "pubmed", "pmc":
 			data, xml_parse_err = xmlTools.ParsePubmedXML(fin)
 		}
 
@@ -98,17 +97,31 @@ func run() error {
 		switch v := data.(type) {
 		case *xmlTools.PubmedArticleSet:
 			fmt.Println("Detected: PubmedArticleSet")
-			if err := jsonTools.ConvertToJson(v, fout); err != nil {
-				return fmt.Errorf("failed to convert to JSON %q: %w", fout, err)
+			xmlTools.NormalizePubmedArticleSet(v)
+			// Build the path to the validation schema.
+			schemaPath := filepath.Join("internal", "jsonTools", "pubmed_json_schema.json")
+
+			if err := jsonTools.ConvertToJson(v, fout, schemaPath); err != nil {
+				return fmt.Errorf("failed to convert PubMed article to JSON %q: %w", fout, err)
 			}
 		case *xmlTools.PubmedBookArticleSet:
+			xmlTools.NormalizePubmedArticleSet(v)
 			fmt.Println("Detected: PubmedBookArticleSet")
-			if err := jsonTools.ConvertToJson(v, fout); err != nil {
-				return fmt.Errorf("failed to convert book to JSON %q: %w", fout, err)
+			schemaPath := filepath.Join("internal", "jsonTools", "pubmed_json_schema.json")
+			if err := jsonTools.ConvertToJson(v, fout, schemaPath); err != nil {
+				return fmt.Errorf("failed to convert PubMed book to JSON %q: %w", fout, err)
+			}
+		case *xmlTools.PMCArticle:
+			fmt.Println("Detected: PMCArticle")
+			xmlTools.NormalizePMCArticle(v)
+			schemaPath := filepath.Join("internal", "jsonTools", "pmc_json_schema.json")
+			if err := jsonTools.ConvertToJson(v, fout, schemaPath); err != nil {
+				return fmt.Errorf("failed to convert PMC article to JSON %q: %w", fout, err)
 			}
 		default:
 			return fmt.Errorf("unsupported data type for file %q", fin)
 		}
+
 	}
 
 	return nil
