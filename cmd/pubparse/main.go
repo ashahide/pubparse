@@ -6,14 +6,24 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime"
 	"time"
 
 	"github.com/ashahide/pubparse/internal/fileIO"
 	"github.com/ashahide/pubparse/internal/jsonTools"
-	"github.com/ashahide/pubparse/internal/makeReports"
-	"github.com/ashahide/pubparse/internal/xmlTools"
 )
 
+//
+// ------------------------ main ------------------------
+//
+
+/*
+main is the entry point for the pubparse command-line tool.
+
+Behavior:
+  - Delegates execution to run().
+  - Logs any error returned and exits with status code 1.
+*/
 func main() {
 	if err := run(); err != nil {
 		log.Println("Error:", err)
@@ -21,156 +31,112 @@ func main() {
 	}
 }
 
+//
+// ------------------------ run ------------------------
+//
+
+/*
+run handles all stages of execution: parsing CLI arguments, validating file paths,
+logging metadata, and launching parallel XML-to-JSON conversion.
+
+Returns:
+  - An error if any stage in the processing pipeline fails.
+
+Behavior:
+  - Supports subcommands: "pubmed" or "pmc".
+  - Required flags: -i (input), -o (output).
+  - Optional flag: --workers (number of concurrent goroutines, default 8).
+  - Validates file count alignment between input/output.
+  - Creates a report file and logs session metadata.
+  - Delegates parallel file processing to jsonTools.ProcessAllFiles.
+*/
 func run() error {
+	// Ensure a valid subcommand is provided
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: pubparse [pubmed|pmc] -i input_path -o output_path")
+		fmt.Println("Usage: pubparse [pubmed|pmc] -i input_path -o output_path [--workers N]")
 		os.Exit(1)
 	}
 
-	mode := os.Args[1]
+	mode := os.Args[1] // Subcommand: "pubmed" or "pmc"
 	var args fileIO.Arguments
+	var workers int
 
+	// Parse flags for the chosen mode
 	switch mode {
-	case "pubmed":
+	case "pubmed", "pmc":
 		cmd := flag.NewFlagSet(mode, flag.ExitOnError)
 		cmd.StringVar(&args.InputPath.Path, "i", "", "Path to the input file or directory")
 		cmd.StringVar(&args.OutputPath.Path, "o", "", "Path to the output file or directory")
+		cmd.IntVar(&workers, "workers", 8, "Number of concurrent workers (default: 8)")
 		if err := cmd.Parse(os.Args[2:]); err != nil {
 			return err
 		}
-
-	case "pmc":
-		cmd := flag.NewFlagSet(mode, flag.ExitOnError)
-		cmd.StringVar(&args.InputPath.Path, "i", "", "Path to the input file or directory")
-		cmd.StringVar(&args.OutputPath.Path, "o", "", "Path to the output file or directory")
-		if err := cmd.Parse(os.Args[2:]); err != nil {
-			return err
-		}
-
 	default:
-		return fmt.Errorf("unknown subcommand: %s\nUsage: pubparse [pubmed|pmc] -i input -o output", mode)
+		return fmt.Errorf("unknown subcommand: %s\nUsage: pubparse [pubmed|pmc] -i input -o output [--workers N]", mode)
 	}
 
-	// Validate and gather input/output files
+	// Validate worker count
+	if workers <= 0 {
+		return fmt.Errorf("invalid number of workers: %d", workers)
+	} else if workers > runtime.NumCPU() {
+		fmt.Printf("Warning: Specified %d workers, but only %d CPU cores available. Setting workers = %d\n", workers, runtime.NumCPU(), runtime.NumCPU())
+	}
+
+	// Validate and resolve input/output paths and match file counts
 	if err := fileIO.HandleInputs(&args); err != nil {
 		return fmt.Errorf("input handling failed: %w", err)
 	}
 	if err := fileIO.HandleOutputs(&args); err != nil {
 		return fmt.Errorf("output handling failed: %w", err)
 	}
-
-	// Check 1-to-1 mapping
 	if len(args.InputPath.Files) != len(args.OutputPath.Files) {
 		return fmt.Errorf("input/output file count mismatch")
 	}
 
-	// Make a report.txt file in the output directory
-	reportFile, err := filepath.Abs(filepath.Join(args.OutputPath.Path, "report.tsv"))
+	// Construct report file path and open it
+	reportPath, err := filepath.Abs(filepath.Join(args.OutputPath.Path, "report.tsv"))
 	if err != nil {
-		return fmt.Errorf("failed to determine absolute path for report file: %w", err)
+		return fmt.Errorf("failed to determine absolute report path: %w", err)
 	}
-	if err := fileIO.MakeFile(reportFile); err != nil {
-		return fmt.Errorf("failed to create report file %q: %w", reportFile, err)
+	if err := fileIO.MakeFile(reportPath); err != nil {
+		return fmt.Errorf("failed to create report file %q: %w", reportPath, err)
 	}
-	report, err := os.OpenFile(reportFile, os.O_APPEND|os.O_WRONLY, 0644)
+	report, err := os.OpenFile(reportPath, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		return fmt.Errorf("failed to open report file %q: %w", reportFile, err)
+		return fmt.Errorf("failed to open report file %q: %w", reportPath, err)
 	}
+	defer report.Close()
 
-	// Write to report file
+	// Record metadata and start time in report
 	startTime := time.Now()
-	if _, err := report.WriteString(fmt.Sprintf("\n>>> Starting Time: %s", startTime)); err != nil {
-		return fmt.Errorf("failed to write to report file %q: %w", reportFile, err)
+	reportHeader := fmt.Sprintf(
+		"\n>>> Starting Time: %s\n>>> Input Directory: %s\n>>> Output Directory: %s\n>>> Number of Inputs: %d\n>>> Workers: %d\n",
+		startTime.Format("2006-01-02 15:04:05"),
+		args.InputPath.Path,
+		args.OutputPath.Path,
+		len(args.InputPath.Files),
+		workers,
+	)
+	if _, err := report.WriteString(reportHeader); err != nil {
+		return fmt.Errorf("failed to write to report file %q: %w", reportPath, err)
 	}
 
-	// Write to report file
-	if _, err := report.WriteString(fmt.Sprintf("\n>>> Input Directory: %s", args.InputPath.Path)); err != nil {
-		return fmt.Errorf("failed to write to report file %q: %w", reportFile, err)
-	}
-
-	// Write to report file
-	if _, err := report.WriteString(fmt.Sprintf("\n>>> Output Directory: %s", args.OutputPath.Path)); err != nil {
-		return fmt.Errorf("failed to write to report file %q: %w", reportFile, err)
-	}
-
-	// Write to report file
-	if _, err := report.WriteString(fmt.Sprintf("\n>>> Number of Inputs: %d", len(args.InputPath.Files))); err != nil {
-		return fmt.Errorf("failed to write to report file %q: %w", reportFile, err)
-	}
-
-	// Print Inputs and Outputs
+	// Echo metadata to console
 	fmt.Println(">>> Input Path:", args.InputPath.Path)
 	fmt.Println(">>> Output Path:", args.OutputPath.Path)
 	fmt.Println(">>> Number of Inputs:", len(args.InputPath.Files))
-	fmt.Println(">>> Starting Time:", startTime)
+	fmt.Println(">>> Workers:", workers)
+	fmt.Println(">>> Starting Time:", startTime.Format("2006-01-02 15:04:05"))
 
-	// Process each file
-	for i := range args.InputPath.Files {
-
-		makeReports.PrintProgressBar(i+1, len(args.InputPath.Files), startTime)
-
-		fin := args.InputPath.Files[i]
-		fout := args.OutputPath.Files[i]
-
-		if err := fileIO.MakeFile(fout); err != nil {
-			return fmt.Errorf("failed to create output file %q: %w", fout, err)
-		}
-
-		var data interface{}
-		var xml_parse_err error
-		switch mode {
-		case "pubmed", "pmc":
-			data, xml_parse_err = xmlTools.ParsePubmedXML(fin)
-		}
-
-		if xml_parse_err != nil {
-			return fmt.Errorf("failed to parse XML %q: %w", fin, xml_parse_err)
-		}
-
-		switch v := data.(type) {
-		case *xmlTools.PubmedArticleSet:
-			xmlTools.NormalizePubmedArticleSet(v)
-			// Build the path to the validation schema.
-			schemaPath := filepath.Join("internal", "jsonTools", "pubmed_json_schema.json")
-
-			if err := jsonTools.ConvertToJson(v, fout, schemaPath); err != nil {
-				return fmt.Errorf("failed to convert PubMed article to JSON %q: %w", fout, err)
-			}
-		case *xmlTools.PubmedBookArticleSet:
-			xmlTools.NormalizePubmedArticleSet(v)
-			schemaPath := filepath.Join("internal", "jsonTools", "pubmed_json_schema.json")
-			if err := jsonTools.ConvertToJson(v, fout, schemaPath); err != nil {
-				return fmt.Errorf("failed to convert PubMed book to JSON %q: %w", fout, err)
-			}
-		case *xmlTools.PMCArticle:
-			xmlTools.NormalizePMCArticle(v)
-			schemaPath := filepath.Join("internal", "jsonTools", "pmc_json_schema.json")
-			if err := jsonTools.ConvertToJson(v, fout, schemaPath); err != nil {
-				return fmt.Errorf("failed to convert PMC article to JSON %q: %w", fout, err)
-			}
-		default:
-			return fmt.Errorf("unsupported data type for file %q", fin)
-		}
-
-		// Write to report file
-		if _, err := report.WriteString(fmt.Sprintf("\n>>> Input file: %s\t Output file: %s\n", fin, fout)); err != nil {
-			return fmt.Errorf("failed to write to report file %q: %w", reportFile, err)
-		}
-		if err := report.Sync(); err != nil {
-			return fmt.Errorf("failed to sync report file %q: %w", reportFile, err)
-		}
-
+	// Begin concurrent file processing
+	if err := jsonTools.ProcessAllFiles(args, mode, report, workers); err != nil {
+		return fmt.Errorf("processing failed: %w", err)
 	}
 
-	// Close the report file
-	if err := report.Close(); err != nil {
-		return fmt.Errorf("failed to close report file %q: %w", reportFile, err)
-	}
-	// Print completion message
+	// Final summary
 	fmt.Println("\n>>> Finished processing files.")
-	fmt.Println(">>> Report file:", reportFile)
+	fmt.Println(">>> Report file:", reportPath)
 	fmt.Println(">>> Elapsed Time:", time.Since(startTime))
 	fmt.Println(">>> Exiting...")
-
 	return nil
 }
