@@ -1,34 +1,49 @@
+
 # pubparse
 
-**pubparse** is a command-line tool for parsing PubMed and PMC XML files, converting them into JSON format, and validating them against structured JSON Schema definitions. It supports parallel processing and generates detailed reports for each session.
+**pubparse** is a command-line tool for parsing PubMed and PMC XML files, converting them into compact JSON, and validating them against structured JSON Schema definitions. It supports parallel processing, real-time progress tracking, and generates reports for reproducibility and auditing.
 
 ---
 
 ## Features
 
-- Supports both **PubMed** and **PMC** XML formats.
-- Converts XML to compact **JSON**.
-- **Schema validation** for structural correctness.
-- **Concurrent processing** with a configurable number of workers.
-- **Progress bar** and real-time console feedback.
-- Generates a `report.tsv` summarizing input-output mappings.
+- Supports **PubMed** and **PMC** XML formats
+- Converts to compact **JSON**
+- **Schema validation** using JSON Schema
+- **Parallel processing** with `--workers`
+- Interactive **progress bar**
+- Generates session-level `report.tsv` with file mappings
 
 ---
 
 ## Installation
 
-Clone the repository and build the binary:
+Clone and build:
 
 ```bash
 git clone https://github.com/yourname/pubparse.git
 cd pubparse
-go build -o pubparse ./cmd/pubparse
+make build
 ```
 
-Or run directly:
+Or run directly with Go:
 
 ```bash
-go run ./cmd/pubparse [subcommand] -i input_dir -o output_dir [--workers N]
+go run ./cmd/pubparse [pubmed|pmc] -i <input_path> -o <output_path> --workers 4
+```
+
+---
+
+## Makefile Targets
+
+```bash
+make help           # Show usage and available targets
+make build          # Build binary at ./bin/pubparse
+make test           # Run tests with coverage info
+make coverage       # Generate HTML test coverage report
+make data           # Generate test XML data for PubMed/PMC
+make example        # Run example pipeline (add FETCH=1 to refresh data)
+make clean          # Remove bin and coverage artifacts
 ```
 
 ---
@@ -39,69 +54,66 @@ go run ./cmd/pubparse [subcommand] -i input_dir -o output_dir [--workers N]
 pubparse [pubmed|pmc] -i <input_path> -o <output_path> [--workers N]
 ```
 
-### Required Arguments
+### Required Flags
 
-- `-i`: Path to an XML file or directory of XML files.
-- `-o`: Path to the output directory for generated JSON files.
+- `-i`: Path to a single XML file or directory of files
+- `-o`: Output directory for JSON files
 
 ### Optional Flags
 
-- `--workers`: Number of concurrent workers to use (default: 8). Caps at available CPU cores.
+- `--workers`: Number of concurrent workers (default: 8, capped at CPU cores)
 
 ---
 
 ## Example
 
-### Parse PubMed XML
-
 ```bash
-pubparse pubmed -i ./test/pubmed_xml -o ./output/pubmed_json --workers 4
+make example FETCH=1
 ```
 
-### Parse PMC Full Text XML
-
-```bash
-pubparse pmc -i ./test/pmc_xml -o ./output/pmc_json
-```
+This will:
+1. Download test data (`fetch_test_data.sh`)
+2. Run both PubMed and PMC processing
+3. Save output JSONs and `report.tsv` under `test/data/test_pubmed/json/` and `test/data/test_pmc/json/`
 
 ---
 
 ## Output
 
-Each execution generates:
+Each run produces:
 
-- **JSON files** for each input XML file in the output directory.
-- A `report.tsv` file inside the output directory that logs:
-  - Start time
-  - Input/output directories
-  - Number of files processed
+- JSON files for each XML input
+- A `report.tsv` containing:
+  - Timestamp
+  - Input/output paths
+  - File count
   - Worker count
-  - Mapping of each input file to its output
+  - Per-file conversion status
 
 ---
 
-## JSON Validation
+## JSON Schema Validation
 
-Each JSON file is validated against:
-- `pubmed_json_schema.json` for PubMed files
-- `pmc_json_schema.json` for PMC files
+All JSON outputs are validated against schemas:
 
-You can find and edit these schema files under `internal/jsonTools/`.
+- `pubmed_json_schema.json` for PubMed
+- `pmc_json_schema.json` for PMC
 
----
-
-## 🛠️ Development
-
-To run tests:
+Schemas live in:
 
 ```bash
-go test ./internal/...
+internal/jsonTools/
 ```
 
-To rebuild:
+---
+
+## Testing
+
+Run tests and generate coverage:
 
 ```bash
-go build -o pubparse ./cmd/pubparse
+make test
+make coverage
 ```
 
 ---
@@ -109,17 +121,18 @@ go build -o pubparse ./cmd/pubparse
 ## Requirements
 
 - Go 1.20+
-- Unix-based OS (Linux/macOS) or Windows (PowerShell compatible)
+- Bash or POSIX-compatible shell
+- Internet connection (for test data generation)
 
 ---
 
 ## License
 
-MIT License. See `LICENSE` file for details.
+MIT License. See `LICENSE` for details.
 
 ---
 
 ## Author
 
-- Andrew Shahidehpour  
-- GitHub: [@ashahide](https://github.com/ashahide)
+**Andrew Shahidehpour**  
+GitHub: [@ashahide](https://github.com/ashahide)
